@@ -1,10 +1,16 @@
-# Tietokantasovelluksen esittelysivu
+﻿
+## General info:
 
-Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](https://www.cs.helsinki.fi)
-* [Linkki dokumentaatiooni](https://www.github.com)
 
-## Työn aihe
+* [Application](http://rile.users.cs.helsinki.fi/tsoha/)
 
-Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html) 
+* [Documentation](https://github.com/rikumleppanen/Customer-Database/tree/master/doc/Documentation.pdf)
+
+
+
+## Description
+
+
+
+Application is designed for marketing people who need to maintain a customer database and take lists of customers.
