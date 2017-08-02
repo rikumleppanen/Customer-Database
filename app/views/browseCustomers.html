@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>List customers</h1>
+
+<p>
+    <a href="#" class="btn btn-success">Add a new customer</a>
+</p>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email address</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <!-- Listataan pelit tähän -->
+        <tr>
+            <td><a href="#">XX</a></td>
+            <td>rk@ad.fi</td>
+            <th><a class="btn btn-default btn-sm" href="#">Change</a></th>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
