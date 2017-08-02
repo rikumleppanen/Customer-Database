@@ -18,7 +18,7 @@ Application is designed for marketing people who need to maintain a customer dat
 
 ## Draft Pages
 
-* [Login](http://rile.users.cs.helsinki.fi/tsoha/drafts/login)
+* [Login](http://rile.users.cs.helsinki.fi/tsoha)
 * [List of Customers](http://rile.users.cs.helsinki.fi/tsoha/drafts/qlist)
 * [Modify a Customers](http://rile.users.cs.helsinki.fi/tsoha/drafts/qchange)
 * [Make a Query](http://rile.users.cs.helsinki.fi/tsoha/drafts/query)
