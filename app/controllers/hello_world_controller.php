@@ -22,5 +22,8 @@ class HelloWorldController extends BaseController {
         View::make('makeAQuery.html');
     }
 
+    public static function quru_qsummary() {
+        View::make('summary.html');
+    }
 
 }

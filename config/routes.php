@@ -21,3 +21,7 @@ $routes->get('/drafts/query', function() {
     HelloWorldController::guru_query();
 });
 
+$routes->get('/drafts/qsummary', function() {
+    HelloWorldController::guru_qsummary();
+});
+
