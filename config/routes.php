@@ -21,7 +21,7 @@ $routes->get('/drafts/query', function() {
     HelloWorldController::guru_query();
 });
 
-$routes->get('/drafts/qsummary', function() {
-    HelloWorldController::guru_qsummary();
+$routes->get('/drafts/qsum', function() {
+    HelloWorldController::guru_qsum();
 });
 

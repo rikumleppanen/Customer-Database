@@ -6,27 +6,34 @@
     <div class="container">
         <br><p>Choose one or several</p>
         <div class="btn-group col-xs-12" data-toggle="buttons">
-            <label class="btn btn-primary">
-                <input type="checkbox" name="consent" id="phone" value="Phone">Phone 
+            <label class="btn btn-primary"> 
+                <input type="checkbox" name="consent" id="phone" value="Phone">Phone <span class="badge" >5</span>
             </label>
-            
+
             <label class="btn btn-primary">
-                <input type="checkbox" name="consent" id="email" value="Email">Email
-            </label>
-            <label class="btn btn-primary">
-                <input type="checkbox" name="consent" id="SMS" value="SMS">SMS
+                <input type="checkbox" name="consent" id="email" value="Email">Email <span class="badge" >6</span>
             </label>
             <label class="btn btn-primary">
-                <input type="checkbox" name="consent" id="direct" value="Direct">Direct
+                <input type="checkbox" name="consent" id="SMS" value="SMS">SMS <span class="badge" >10</span>
+            </label>
+            <label class="btn btn-primary">
+                <input type="checkbox" name="consent" id="direct" value="Direct">Direct <span class="badge" >15</span>
             </label>
         </div>
     </div>
-    <div class="form-group">
-        <label>Give a name to the query</label>
-        <input class="form-control" value="" type="text">
-    </div>
-    <div class="form-group">
-        <button type="submit" class="btn btn-info">Create</button>
-    </div>
+    <ul class="list-group">
+        <li class="list-group-item justify-content-between">
+            Active customers
+            <span class="badge badge-default badge-pill">14</span>
+        </li>
+        <li class="list-group-item justify-content-between">
+            Passive customers
+            <span class="badge badge-default badge-pill">2</span>
+        </li>
+        <li class="list-group-item justify-content-between">
+            Potential customers
+            <span class="badge badge-default badge-pill">145</span>
+        </li>
+    </ul>
 </form>
 {% endblock %}
