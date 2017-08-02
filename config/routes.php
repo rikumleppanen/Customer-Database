@@ -16,9 +16,6 @@ $routes->get('/drafts/qchange', function() {
     HelloWorldController::guru_change();
 });
 
-$routes->get('/drafts/login', function() {
-    HelloWorldController::guru_login();
-});
 
 $routes->get('/drafts/query', function() {
     HelloWorldController::guru_query();
