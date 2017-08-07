@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Customer xx</h1>
+<h1>Customer {{customer.name}}</h1>
 
 <form>
     <div class="container">
@@ -23,19 +23,19 @@
 
     <div class="form-group">
         <label>Name</label>
-        <input class="form-control" value="xx" type="text">
+        <input class="form-control" value="{{customer.name}}" type="text">
     </div>
     <div class="form-group">
         <label>Email address</label>
-        <input class="form-control" value="ak@ak.fi" type="text">
+        <input class="form-control" value="{{customer.email}}" type="text">
     </div>
     <div class="form-group">
         <label>Post address</label>
-        <input class="form-control" value="ss" type="text">
+        <input class="form-control" value="{{customer.address}}" type="text">
     </div>
     <div class="form-group">
         <label>Phone number</label>
-        <input class="form-control" value="0101111" type="text">
+        <input class="form-control" value="{{customer.phone}}" type="text">
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Save</button>

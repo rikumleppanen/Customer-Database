@@ -1,5 +1,5 @@
 <?php
-
+require 'app/models/customer.php';
 class HelloWorldController extends BaseController {
 
     public static function index() {
@@ -7,7 +7,8 @@ class HelloWorldController extends BaseController {
     }
 
     public static function sandbox() {
-        View::make('login.html');
+        $customers = Customer::all();
+        Kint::dump($customers);
     }
 
     public static function guru_change() {

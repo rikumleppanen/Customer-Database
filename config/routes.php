@@ -12,7 +12,7 @@ $routes->get('/drafts/qlist', function() {
     HelloWorldController::guru_list();
 });
 
-$routes->get('/drafts/qchange', function() {
+$routes->get('/drafts/edit', function() {
     HelloWorldController::guru_change();
 });
 
@@ -25,3 +25,10 @@ $routes->get('/drafts/qsum', function() {
     HelloWorldController::guru_qsum();
 });
 
+$routes->get('/drafts/customer', function() {
+    CustomerController::index();
+});
+
+$routes->get('/drafts/customer/:id', function($id){
+    CustomerController::find($id);
+});
