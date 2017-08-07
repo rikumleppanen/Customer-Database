@@ -54,4 +54,23 @@ class Customer extends BaseModel {
         return null;
     }
 
+    public function save() {
+        $query = DB::connection()->prepare('INSERT INTO Customer (name, email, address, number) VALUES (:name, :email, :address, :number) RETURNING id');
+        $query->execute(array('name' => $this->name, 'email' => $this->email, 'address' => $this->address, 'number' => $this->number));
+        $row = $query->fetch();
+        $this->id = $row['id'];
+    }
+
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE Customer SET name=:name, email=:email, address=:address, number=:number WHERE id=:id RETURNING id');
+        $query->execute(array('name' => $this->name, 'email' => $this->email, 'address' => $this->address, 'number' => $this->number, 'id' => $this->id));
+        $row = $query->fetch();
+        $this->id = $row['id'];
+    }
+    
+    public function destroy() {
+       $query = DB::connection() ->prepare('DELETE FROM Customer WHERE id=:id');
+       $query -> execute(array('id' => $this->id));
+    }
+
 }

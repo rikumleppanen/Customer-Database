@@ -29,6 +29,22 @@ $routes->get('/drafts/customer', function() {
     CustomerController::index();
 });
 
-$routes->get('/drafts/customer/:id', function($id){
+$routes->post('/drafts/customer/new', function() {
+    CustomerController::store();
+});
+
+$routes->get('/drafts/customer/new', function() {
+    CustomerController::create();
+});
+
+$routes->get('/drafts/customer/delete/:id', function($id) {
+    CustomerController::destroy($id);
+});
+$routes->get('/drafts/customer/:id', function($id) {
     CustomerController::find($id);
 });
+
+$routes->post('/drafts/customer/:id', function($id) {
+    CustomerController::update($id);
+});
+
