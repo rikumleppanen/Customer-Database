@@ -20,6 +20,7 @@ Application is designed for marketing people who need to maintain a customer dat
 
 * [Login](http://rile.users.cs.helsinki.fi/tsoha)
 * [Summary/Front Page](http://rile.users.cs.helsinki.fi/tsoha/drafts/qsum)
-* [List of Customers](http://rile.users.cs.helsinki.fi/tsoha/drafts/qlist)
-* [Modify a Customer](http://rile.users.cs.helsinki.fi/tsoha/drafts/qchange)
+* [List of Customers](http://rile.users.cs.helsinki.fi/tsoha/drafts/customer)
+* [Create a Customer](http://rile.users.cs.helsinki.fi/tsoha/drafts/customer/new)
+* [Modify an Existing Customer](http://rile.users.cs.helsinki.fi/tsoha/drafts/customer/4)
 * [Make a Query](http://rile.users.cs.helsinki.fi/tsoha/drafts/query)
