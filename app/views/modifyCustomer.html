@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
+
+
+{% if message %}
+<div class="alert alert-success">{{message}}</div>
+{% endif %}
+
 <h1>Customer {{customer.name}}</h1>
 
 <form method="post" action="{{base_path}}/drafts/customer/{{customer.id}}">
