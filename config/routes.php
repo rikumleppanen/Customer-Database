@@ -40,6 +40,11 @@ $routes->get('/drafts/customer/new', function() {
 $routes->get('/drafts/customer/delete/:id', function($id) {
     CustomerController::destroy($id);
 });
+
+$routes->get('/drafts/customer/consent/:id', function($id) {
+    CustomerconsentController::find($id);
+});
+
 $routes->get('/drafts/customer/:id', function($id) {
     CustomerController::find($id);
 });
@@ -47,4 +52,6 @@ $routes->get('/drafts/customer/:id', function($id) {
 $routes->post('/drafts/customer/:id', function($id) {
     CustomerController::update($id);
 });
+
+
 

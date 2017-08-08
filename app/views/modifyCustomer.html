@@ -9,21 +9,58 @@
 <h1>Customer {{customer.name}}</h1>
 
 <form method="post" action="{{base_path}}/drafts/customer/{{customer.id}}">
+
     <div class="container">
         <br><p>Consents</p>
+
         <div class="btn-group col-xs-12" data-toggle="buttons">
-            <label class="btn btn-primary">
-                <input type="checkbox" name="consent" id="phone" value="Phone">Phone
+
+            {% if customer.email_consent == true %}
+            <label class="btn btn-primary active">
+                <input name="email_consent" type="checkbox" value="true">Email
             </label>
+            {% elseif customer.email_consent == false %}
             <label class="btn btn-primary">
-                <input type="checkbox" name="consent" id="email" value="Email">Email
+                <input name="email_consent" type="checkbox" value="false">Email
             </label>
+            {% endif %}
+            {% if customer.address_consent == true %}
+            <label class="btn btn-primary active">
+                <input name="address_consent" type="checkbox" value="true">Direct
+            </label>
+            {% elseif customer.address_consent == false %}
             <label class="btn btn-primary">
-                <input type="checkbox" name="consent" id="SMS" value="SMS">SMS
+                <input name="address_consent" type="checkbox" value="false">Direct
             </label>
+            {% endif %}
+            {% if customer.address_consent == true %}
+            <label class="btn btn-primary active">
+                <input name="number_consent" type="checkbox" value="true">Phone
+            </label>
+            {% elseif customer.address_consent == false %}
             <label class="btn btn-primary">
-                <input type="checkbox" name="consent" id="direct" value="Direct">Direct
+                <input name="number_consent" type="checkbox" value="false">Phone
             </label>
+            {% endif %}
+            {% if customer.sms_consent == true %}
+            <label class="btn btn-primary active">
+                <input name="sms_consent" type="checkbox" value="true">SMS
+            </label>
+            {% elseif customer.sms_consent == false %}
+            <label class="btn btn-primary">
+                <input name="sms_consent" type="checkbox" value="false">SMS
+            </label>
+            {% endif %}
+            {% if customer.thirdparty_consent == true %}
+            <label class="btn btn-primary active">
+                <input name="thirdparty_consent" type="checkbox" value="true">ThirdParty
+            </label>
+            {% elseif customer.thirdparty_consent == false %}
+            <label class="btn btn-primary">
+                <input name="thirdparty_consent" type="checkbox" value="false">ThirdParty
+            </label>
+            {% endif %}
+
         </div>
     </div>
 
@@ -45,7 +82,7 @@
     </div>
     <div class="form-group">
         <label>id</label>
-        <input name="id" class="form-control" value="{{customer.id}}" type="text">
+        <input name="id" class="form-control" value="{{customer.id}}" type="text" disabled>
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Save</button>

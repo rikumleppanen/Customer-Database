@@ -11,6 +11,7 @@ class CustomerController extends BaseController {
 
     public static function find($id) {
         $customer = Customer::find($id);
+        //Kint::dump($customer);
         View::make('modifyCustomer.html', array('customer' => $customer));
     }
 
@@ -21,7 +22,12 @@ class CustomerController extends BaseController {
             'name' => $params['name'],
             'email' => $params['email'],
             'address' => $params['address'],
-            'number' => $params['number']
+            'number' => $params['number'],
+            'email_consent' => $params['email_consent'],
+            'address_consent' => $params['address_consent'],
+            'number_consent' => $params['number_consent'],
+            'sms_consent' => $params['sms_consent'],
+            'thirdparty_consent' => $params['thirdparty_consent']
         ));
         $customer->save();
         Redirect::to('/drafts/customer/' . $customer->id);
@@ -33,9 +39,15 @@ class CustomerController extends BaseController {
             'name' => $params['name'],
             'email' => $params['email'],
             'address' => $params['address'],
-            'number' => $params['number']
+            'number' => $params['number'],
+            'email_consent' => $params['email_consent'],
+            'address_consent' => $params['address_consent'],
+            'number_consent' => $params['number_consent'],
+            'sms_consent' => $params['sms_consent'],
+            'thirdparty_consent' => $params['thirdparty_consent']
         ));
         $customer->save();
+
         Redirect::to('/drafts/customer/' . $customer->id, array('message' => 'Customer is created successfully!'));
     }
 
@@ -46,6 +58,11 @@ class CustomerController extends BaseController {
             'email' => $params['email'],
             'address' => $params['address'],
             'number' => $params['number'],
+            'email_consent' => $params['email_consent'],
+            'address_consent' => $params['address_consent'],
+            'number_consent' => $params['number_consent'],
+            'sms_consent' => $params['sms_consent'],
+            'thirdparty_consent' => $params['thirdparty_consent'],
             'id' => $params['id']
         ));
         $customer->update();

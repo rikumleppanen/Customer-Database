@@ -16,6 +16,11 @@ CREATE TABLE Customer(
     email varchar(40),
     address varchar(120),
     number varchar(20),
+    email_consent boolean default FALSE,
+    address_consent boolean default FALSE,
+    number_consent boolean default FALSE,
+    sms_consent boolean default FALSE,
+    thirdparty_consent boolean default FALSE,
     tstz TIMESTAMPTZ);
 
 CREATE TABLE QueryCustomer(
@@ -30,4 +35,5 @@ CREATE TABLE Consent(
 CREATE TABLE CustomerConsent(
     id SERIAL PRIMARY KEY, 
     customer INTEGER REFERENCES Customer(id), 
-    consent INTEGER  REFERENCES Consent(id));
+    consent INTEGER  REFERENCES Consent(id),
+    tstz TIMESTAMPTZ);

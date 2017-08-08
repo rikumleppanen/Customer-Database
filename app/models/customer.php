@@ -2,7 +2,7 @@
 
 class Customer extends BaseModel {
 
-    public $id, $name, $email, $address, $number, $tstz;
+    public $id, $name, $email, $address, $number, $email_consent, $address_consent, $number_consent, $sms_consent, $thirdparty_consent, $tstz;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -26,6 +26,11 @@ class Customer extends BaseModel {
                 'email' => $row['email'],
                 'address' => $row['address'],
                 'number' => $row['number'],
+                'email_consent' => $row['email_consent'],
+                'address_consent' => $row['address_consent'],
+                'number_consent' => $row['number_consent'],
+                'sms_consent' => $row['sms_consent'],
+                'thirdparty_consent' => $row['thirdparty_consent'],
                 'tstz' => $row['tstz']
             ));
         }
@@ -45,6 +50,11 @@ class Customer extends BaseModel {
                 'email' => $row['email'],
                 'address' => $row['address'],
                 'number' => $row['number'],
+                'email_consent' => $row['email_consent'],
+                'address_consent' => $row['address_consent'],
+                'number_consent' => $row['number_consent'],
+                'sms_consent' => $row['sms_consent'],
+                'thirdparty_consent' => $row['thirdparty_consent'],
                 'tstz' => $row['tstz']
             ));
 
@@ -55,22 +65,22 @@ class Customer extends BaseModel {
     }
 
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Customer (name, email, address, number) VALUES (:name, :email, :address, :number) RETURNING id');
-        $query->execute(array('name' => $this->name, 'email' => $this->email, 'address' => $this->address, 'number' => $this->number));
+        $query = DB::connection()->prepare('INSERT INTO Customer (name, email, address, number, email_consent, address_consent, number_consent, sms_consent, thirdparty_consent) VALUES (:name, :email, :address, :number, :email_consent, :address_consent, :number_consent, :sms_consent, :thirdparty_consent) RETURNING id');
+        $query->execute(array('name' => $this->name, 'email' => $this->email, 'address' => $this->address, 'number' => $this->number, 'email_consent' => $this->email_consent, 'address_consent' => $this->address_consent, 'number_consent' => $this->number_consent, 'sms_consent' => $this->sms_consent, 'thirdparty_consent' => $this->thirdparty_consent));
         $row = $query->fetch();
         $this->id = $row['id'];
     }
 
     public function update() {
-        $query = DB::connection()->prepare('UPDATE Customer SET name=:name, email=:email, address=:address, number=:number WHERE id=:id RETURNING id');
-        $query->execute(array('name' => $this->name, 'email' => $this->email, 'address' => $this->address, 'number' => $this->number, 'id' => $this->id));
+        $query = DB::connection()->prepare('UPDATE Customer SET name=:name, email=:email, address=:address, number=:number, email_consent=:email_consent, address_consent=:address_consent, number_consent=:number_consent, sms_consent=:sms_consent, thirdparty_consent=:thirdparty_consent WHERE id=:id RETURNING id');
+        $query->execute(array('name' => $this->name, 'email' => $this->email, 'address' => $this->address, 'number' => $this->number, 'email_consent' => $this->email_consent, 'address_consent' => $this->address_consent, 'number_consent' => $this->number_consent, 'sms_consent' => $this->sms_consent, 'thirdparty_consent' => $this->thirdparty_consent, 'id' => $this->id));
         $row = $query->fetch();
         $this->id = $row['id'];
     }
-    
+
     public function destroy() {
-       $query = DB::connection() ->prepare('DELETE FROM Customer WHERE id=:id');
-       $query -> execute(array('id' => $this->id));
+        $query = DB::connection()->prepare('DELETE FROM Customer WHERE id=:id');
+        $query->execute(array('id' => $this->id));
     }
 
 }

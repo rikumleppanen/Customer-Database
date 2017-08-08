@@ -12,16 +12,20 @@
         <br><p>Consents</p>
         <div class="btn-group col-xs-12" data-toggle="buttons">
             <label class="btn btn-primary">
-                <input type="checkbox" name="consent" id="phone" value="Phone">Phone
+                <input name="email_consent" type="checkbox" value="true">Email
             </label>
             <label class="btn btn-primary">
-                <input type="checkbox" name="consent" id="email" value="Email">Email
+                <input name="address_consent" type="checkbox" value="true">Direct
             </label>
             <label class="btn btn-primary">
-                <input type="checkbox" name="consent" id="SMS" value="SMS">SMS
+                <input name="number_consent" type="checkbox" value="true">Phone
             </label>
             <label class="btn btn-primary">
-                <input type="checkbox" name="consent" id="direct" value="Direct">Direct
+                <input name="sms_consent" type="checkbox" value="true">SMS
+            </label>
+
+            <label class="btn btn-primary">
+                <input name="thirdparty_consent" type="checkbox" value="true">ThirdParty
             </label>
         </div>
     </div>
@@ -42,7 +46,7 @@
         <label>Phone number</label>
         <input name="number" class="form-control" value="" type="text">
     </div>
-    <div class="form-group">
+    <div>
         <button type="submit" class="btn btn-primary">Save</button>
     </div>
 </form>
