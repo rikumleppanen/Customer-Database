@@ -18,7 +18,7 @@ Application is designed for marketing people who need to maintain a customer dat
 
 ## Draft Pages
 
-# Alert! Only Customers with consent attributes are working properly: adding new customers, modifying  and destroying the existing ones.
+### Alert! Only Customers with consent attributes are working properly: adding new customers, modifying  and destroying the existing ones.
 
 * [Login](http://rile.users.cs.helsinki.fi/tsoha)
 * [Summary/Front Page](http://rile.users.cs.helsinki.fi/tsoha/drafts/qsum)
