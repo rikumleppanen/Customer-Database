@@ -18,34 +18,56 @@ class CustomerController extends BaseController {
     public static function create() {
         View::make('newCustomer.html');
         $params = $_POST;
-        $customer = new Customer(array(
+        $cust = array(
             'name' => $params['name'],
             'email' => $params['email'],
             'address' => $params['address'],
-            'number' => $params['number'],
-            'email_consent' => $params['email_consent'],
-            'address_consent' => $params['address_consent'],
-            'number_consent' => $params['number_consent'],
-            'sms_consent' => $params['sms_consent'],
-            'thirdparty_consent' => $params['thirdparty_consent']
-        ));
+            'number' => $params['number']
+        );
+        if (array_key_exists('email_consent', $params)) {
+            $cust['email_consent'] = $params['email_consent'];
+        }
+        if (array_key_exists('number_consent', $params)) {
+            $cust['number_consent'] = $params['number_consent'];
+        }
+        if (array_key_exists('address_consent', $params)) {
+            $cust['address_consent'] = $params['address_consent'];
+        }
+        if (array_key_exists('sms_consent', $params)) {
+            $cust['sms_consent'] = $params['sms_consent'];
+        }
+        if (array_key_exists('thirdparty_consent', $params)) {
+            $cust['thirdparty_consent'] = $params['thirdparty_consent'];
+        }
+        $customer = new Customer($cust);
         $customer->save();
         Redirect::to('/drafts/customer/' . $customer->id);
     }
 
     public static function store() {
         $params = $_POST;
-        $customer = new Customer(array(
+        $cust = array(
             'name' => $params['name'],
             'email' => $params['email'],
             'address' => $params['address'],
             'number' => $params['number'],
-            'email_consent' => $params['email_consent'],
-            'address_consent' => $params['address_consent'],
-            'number_consent' => $params['number_consent'],
-            'sms_consent' => $params['sms_consent'],
-            'thirdparty_consent' => $params['thirdparty_consent']
-        ));
+        );
+        if (array_key_exists('email_consent', $params)) {
+            $cust['email_consent'] = $params['email_consent'];
+        }
+        if (array_key_exists('number_consent', $params)) {
+            $cust['number_consent'] = $params['number_consent'];
+        }
+        if (array_key_exists('address_consent', $params)) {
+            $cust['address_consent'] = $params['address_consent'];
+        }
+        if (array_key_exists('sms_consent', $params)) {
+            $cust['sms_consent'] = $params['sms_consent'];
+        }
+        if (array_key_exists('thirdparty_consent', $params)) {
+            $cust['thirdparty_consent'] = $params['thirdparty_consent'];
+        }
+        $customer = new Customer($cust);
         $customer->save();
 
         Redirect::to('/drafts/customer/' . $customer->id, array('message' => 'Customer is created successfully!'));
@@ -53,18 +75,29 @@ class CustomerController extends BaseController {
 
     public static function update($id) {
         $params = $_POST;
-        $customer = new Customer(array(
+        $cust = array(
+            'id' => $params['id'],
             'name' => $params['name'],
             'email' => $params['email'],
             'address' => $params['address'],
-            'number' => $params['number'],
-            'email_consent' => $params['email_consent'],
-            'address_consent' => $params['address_consent'],
-            'number_consent' => $params['number_consent'],
-            'sms_consent' => $params['sms_consent'],
-            'thirdparty_consent' => $params['thirdparty_consent'],
-            'id' => $params['id']
-        ));
+            'number' => $params['number']
+        );
+        if (array_key_exists('email_consent', $params)) {
+            $cust['email_consent'] = $params['email_consent'];
+        } 
+        if (array_key_exists('number_consent', $params)) {
+            $cust['number_consent'] = $params['number_consent'];
+        }
+        if (array_key_exists('address_consent', $params)) {
+            $cust['address_consent'] = $params['address_consent'];
+        }
+        if (array_key_exists('sms_consent', $params)) {
+            $cust['sms_consent'] = $params['sms_consent'];
+        }
+        if (array_key_exists('thirdparty_consent', $params)) {
+            $cust['thirdparty_consent'] = $params['thirdparty_consent'];
+        }
+        $customer = new Customer($cust);
         $customer->update();
         Redirect::to('/drafts/customer/' . $customer->id, array('message' => 'Updated successfully!'));
     }

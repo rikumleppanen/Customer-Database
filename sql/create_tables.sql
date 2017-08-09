@@ -16,11 +16,11 @@ CREATE TABLE Customer(
     email varchar(40),
     address varchar(120),
     number varchar(20),
-    email_consent boolean default FALSE,
-    address_consent boolean default FALSE,
-    number_consent boolean default FALSE,
-    sms_consent boolean default FALSE,
-    thirdparty_consent boolean default FALSE,
+    email_consent boolean,
+    address_consent boolean,
+    number_consent boolean,
+    sms_consent boolean,
+    thirdparty_consent boolean,
     tstz TIMESTAMPTZ);
 
 CREATE TABLE QueryCustomer(
