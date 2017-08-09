@@ -16,6 +16,17 @@ $routes->get('/drafts/edit', function() {
     HelloWorldController::guru_change();
 });
 
+$routes->get('/login', function() {
+    MarketinguruController::login();
+});
+
+$routes->post('/login', function() {
+    MarketinguruController::handle_login();
+});
+
+$routes->post('/logout', function() {
+    MarketinguruController::logout();
+});
 
 $routes->get('/drafts/query', function() {
     HelloWorldController::guru_query();

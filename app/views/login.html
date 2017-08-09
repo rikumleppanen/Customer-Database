@@ -3,17 +3,17 @@
   <h1>Welcome to Customer Database</h1>
 
   <!-- Kaikki lomakkeen elementit form-tagin sisään -->
-  <form>
+  <form method="post" action="{{base_path}}/login">
     <!-- Tekstikenttä käyttäjätunnukselle -->
     <div class="form-group">
       <label>Email address</label>
-      <input class="form-control" type="text">
+      <input name=email class="form-control" type="text">
     </div>
 
     <!-- Salasanakenttä salasanalle -->
     <div class="form-group">
       <label>Password</label>
-      <input class="form-control" type="password">
+      <input name=password class="form-control" type="password">
     </div>
 
     <button type="submit" class="btn btn-primary">Sign in</button>
