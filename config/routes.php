@@ -4,6 +4,10 @@ function check_logged_in() {
     BaseController::check_logged_in();
 }
 
+function check_admin_rights() {
+    BaseController::check_admin_rights();
+}
+
 $routes->get('/', function() {
     HelloWorldController::index();
 });
@@ -56,10 +60,6 @@ $routes->get('/customers/delete/:id', function($id) {
     CustomerController::destroy($id);
 });
 
-$routes->get('/customers/consent/:id', function($id) {
-    CustomerconsentController::find($id);
-});
-
 $routes->get('/customers/:id', function($id) {
     CustomerController::find($id);
 });
@@ -68,5 +68,28 @@ $routes->post('/customers/:id', function($id) {
     CustomerController::update($id);
 });
 
+$routes->get('/users', 'check_admin_rights', function() {
+    MarketinguruController::index();
+});
+
+$routes->post('/users/new', 'check_admin_rights', function() {
+    MarketinguruController::store();
+});
+
+$routes->get('/users/new', 'check_admin_rights', function() {
+    MarketinguruController::create();
+});
+
+$routes->get('/users/:id', 'check_admin_rights', function($id) {
+    MarketinguruController::find($id);
+});
+
+$routes->post('/users/:id', 'check_admin_rights', function($id) {
+    MarketinguruController::update($id);
+});
+
+$routes->get('/users/delete/:id', 'check_admin_rights', function($id) {
+    MarketinguruController::destroy($id);
+});
 
 

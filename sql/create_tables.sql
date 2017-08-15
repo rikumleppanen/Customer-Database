@@ -2,7 +2,7 @@ CREATE TABLE Guru(
     id SERIAL PRIMARY KEY, 
     name varchar(60) NOT NULL, 
     email varchar(40) NOT NULL, 
-    admin_rights boolean default FALSE,
+    admin_rights boolean,
     password varchar(50) NOT NULL);
 
 CREATE TABLE Query(

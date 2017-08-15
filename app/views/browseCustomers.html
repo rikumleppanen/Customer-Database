@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% if user_logged_in %}
-Logged in as <b>{{user_logged_in.name}}</b>
-{% endif %}
 
 {% if message %}
 <div class="alert alert-success">{{message}}</div>

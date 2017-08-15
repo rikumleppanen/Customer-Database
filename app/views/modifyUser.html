@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+{% if message %}
+<div class="alert alert-success">{{message}}</div>
+{% endif %}
+
+<h1>User {{user.name}}</h1>
+
+<form method="post" action="{{base_path}}/users/{{user.id}}">
+
+    <div class="container">
+        <br><p>Admin can see the other active users</p>
+
+        <div class="btn-group col-xs-12" data-toggle="buttons">
+
+            {% if user.admin_rights == true %}
+            <label class="btn btn-primary active">
+                <input name="admin_rights" type="checkbox" checked="checked" value="1">Admin
+            </label>
+            {% elseif user.admin_rights == false %}
+            <label class="btn btn-primary">
+                <input name="admin_rights" type="checkbox" value="1">Admin
+            </label>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Name</label>
+        <input name="name" class="form-control" value="{{user.name}}" type="text">
+    </div>
+    <div class="form-group">
+        <label>Email address</label>
+        <input name="email" class="form-control" value="{{user.email}}" type="text">
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input name="password" class="form-control" value="{{user.password}}" type="text">
+    </div>
+    <div class="form-group">
+        <label>id</label>
+        <input name="id" class="form-control" value="{{user.id}}" type="text" readonly>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+    <div class="form-group">
+        <a href="{{base_path}}/users/delete/{{user.id}}" class="btn btn-danger" role="button">Delete this user</a>
+    </div>
+</form>
+{% endblock %}

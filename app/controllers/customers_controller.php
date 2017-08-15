@@ -1,6 +1,5 @@
 <?php
 
-
 class CustomerController extends BaseController {
 
     public static function index() {
@@ -16,31 +15,6 @@ class CustomerController extends BaseController {
 
     public static function create() {
         View::make('newCustomer.html');
-        $params = $_POST;
-        $cust = array(
-            'name' => $params['name'],
-            'email' => $params['email'],
-            'address' => $params['address'],
-            'number' => $params['number']
-        );
-        if (array_key_exists('email_consent', $params)) {
-            $cust['email_consent'] = $params['email_consent'];
-        }
-        if (array_key_exists('number_consent', $params)) {
-            $cust['number_consent'] = $params['number_consent'];
-        }
-        if (array_key_exists('address_consent', $params)) {
-            $cust['address_consent'] = $params['address_consent'];
-        }
-        if (array_key_exists('sms_consent', $params)) {
-            $cust['sms_consent'] = $params['sms_consent'];
-        }
-        if (array_key_exists('thirdparty_consent', $params)) {
-            $cust['thirdparty_consent'] = $params['thirdparty_consent'];
-        }
-        $customer = new Customer($cust);
-        $customer->save();
-        Redirect::to('/customers/' . $customer->id);
     }
 
     public static function store() {
@@ -68,7 +42,6 @@ class CustomerController extends BaseController {
         }
         $customer = new Customer($cust);
         $customer->save();
-
         Redirect::to('/customers/' . $customer->id, array('message' => 'Customer is created successfully!'));
     }
 
@@ -83,7 +56,7 @@ class CustomerController extends BaseController {
         );
         if (array_key_exists('email_consent', $params)) {
             $cust['email_consent'] = $params['email_consent'];
-        } 
+        }
         if (array_key_exists('number_consent', $params)) {
             $cust['number_consent'] = $params['number_consent'];
         }
