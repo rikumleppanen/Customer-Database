@@ -63,10 +63,9 @@ class Guru extends BaseModel {
 
     public function validate_email() {
         $errors = array();
-        if ($this->email == '' || $this->email == null ) {
+        if ($this->email == '' || $this->email == null || $this->email == '%@%') {
             $errors[] = 'Give your email address, please!';
-        }
-    //    || $this->email != '%@%'
+        }  
         return $errors;
     }
 

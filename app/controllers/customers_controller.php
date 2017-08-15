@@ -41,7 +41,7 @@ class CustomerController extends BaseController {
         }
         $customer = new Customer($cust);
         $customer->save();
-        Redirect::to('/drafts/customer/' . $customer->id);
+        Redirect::to('/customers/' . $customer->id);
     }
 
     public static function store() {
@@ -70,7 +70,7 @@ class CustomerController extends BaseController {
         $customer = new Customer($cust);
         $customer->save();
 
-        Redirect::to('/drafts/customer/' . $customer->id, array('message' => 'Customer is created successfully!'));
+        Redirect::to('/customers/' . $customer->id, array('message' => 'Customer is created successfully!'));
     }
 
     public static function update($id) {
@@ -99,14 +99,14 @@ class CustomerController extends BaseController {
         }
         $customer = new Customer($cust);
         $customer->update();
-        Redirect::to('/drafts/customer/' . $customer->id, array('message' => 'Updated successfully!'));
+        Redirect::to('/customers/' . $customer->id, array('message' => 'Updated successfully!'));
     }
 
     public static function destroy($id) {
         $attributes = array('id' => $id);
         $customer = new Customer($attributes);
         $customer->destroy();
-        Redirect::to('/drafts/customer', array('message' => 'Customer is deleted from the database.'));
+        Redirect::to('/customers', array('message' => 'Customer is deleted from the database.'));
     }
 
 }

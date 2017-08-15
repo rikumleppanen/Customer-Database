@@ -8,7 +8,7 @@
 
 <h1>Customer {{customer.name}}</h1>
 
-<form method="post" action="{{base_path}}/drafts/customer/{{customer.id}}">
+<form method="post" action="{{base_path}}/customers/{{customer.id}}">
 
     <div class="container">
         <br><p>Consents</p>
@@ -82,13 +82,13 @@
     </div>
     <div class="form-group">
         <label>id</label>
-        <input name="id" class="form-control" value="{{customer.id}}" type="text">
+        <input name="id" class="form-control" value="{{customer.id}}" type="text" readonly>
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Save</button>
     </div>
     <div class="form-group">
-        <a href="{{base_path}}/drafts/customer/delete/{{customer.id}}" class="btn btn-danger" role="button">Delete this customer</a>
+        <a href="{{base_path}}/customers/delete/{{customer.id}}" class="btn btn-danger" role="button">Delete this customer</a>
     </div>
 </form>
 {% endblock %}

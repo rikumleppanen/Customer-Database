@@ -1,5 +1,6 @@
-INSERT INTO Guru(name, email, admin_rights,password) VALUES ('Matti Mansikka', 'matti','t','1234');
-INSERT INTO Guru(name, email, admin_rights,password) VALUES ('Raija Ratikka', 'raija','f','4321');
+INSERT INTO Guru(name, email, admin_rights,password) VALUES ('Matti Mansikka', 'matti@testi.com','t','1234');
+INSERT INTO Guru(name, email, admin_rights,password) VALUES ('Raija Ratikka', 'raija@testi.com','f','4321');
+INSERT INTO Guru(name, email, admin_rights,password) VALUES ('Ville Vilperi', 'ville','f','12345');
 INSERT INTO Query(tstz,guru) VALUES (NOW(), (SELECT id FROM Guru WHERE name = 'Matti Mansikka'));
 INSERT INTO Customer(name, tstz) VALUES ('Osakeyhtiö AB', NOW());
 INSERT INTO Customer(name, email, address, number, email_consent, address_consent, thirdparty_consent, tstz) VALUES ('Ville','ak@ak.fi','Lopeentie','0101111', 't','t','t', NOW());

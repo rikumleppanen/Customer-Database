@@ -8,11 +8,11 @@ $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
 });
 
-$routes->get('/drafts/qlist', function() {
+$routes->get('/qlist', function() {
     HelloWorldController::guru_list();
 });
 
-$routes->get('/drafts/edit', function() {
+$routes->get('/edit', function() {
     HelloWorldController::guru_change();
 });
 
@@ -28,39 +28,39 @@ $routes->post('/logout', function() {
     MarketinguruController::logout();
 });
 
-$routes->get('/drafts/query', function() {
+$routes->get('/query', function() {
     HelloWorldController::guru_query();
 });
 
-$routes->get('/drafts/qsum', function() {
+$routes->get('/qsum', function() {
     HelloWorldController::guru_qsum();
 });
 
-$routes->get('/drafts/customer', function() {
+$routes->get('/customers', function() {
     CustomerController::index();
 });
 
-$routes->post('/drafts/customer/new', function() {
+$routes->post('/customers/new', function() {
     CustomerController::store();
 });
 
-$routes->get('/drafts/customer/new', function() {
+$routes->get('/customers/new', function() {
     CustomerController::create();
 });
 
-$routes->get('/drafts/customer/delete/:id', function($id) {
+$routes->get('/customers/delete/:id', function($id) {
     CustomerController::destroy($id);
 });
 
-$routes->get('/drafts/customer/consent/:id', function($id) {
+$routes->get('/customers/consent/:id', function($id) {
     CustomerconsentController::find($id);
 });
 
-$routes->get('/drafts/customer/:id', function($id) {
+$routes->get('/customers/:id', function($id) {
     CustomerController::find($id);
 });
 
-$routes->post('/drafts/customer/:id', function($id) {
+$routes->post('/customers/:id', function($id) {
     CustomerController::update($id);
 });
 
