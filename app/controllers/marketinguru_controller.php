@@ -1,6 +1,5 @@
 <?php
 
-require 'app/models/guru.php';
 
 class MarketinguruController extends BaseController {
 

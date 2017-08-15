@@ -1,5 +1,9 @@
 <?php
 
+function check_logged_in() {
+    BaseController::check_logged_in();
+}
+
 $routes->get('/', function() {
     HelloWorldController::index();
 });
@@ -28,7 +32,7 @@ $routes->post('/logout', function() {
     MarketinguruController::logout();
 });
 
-$routes->get('/query', function() {
+$routes->get('/query', 'check_logged_in', function() {
     HelloWorldController::guru_query();
 });
 

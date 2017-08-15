@@ -1,6 +1,5 @@
 <?php
 
-require 'app/models/customer.php';
 
 class CustomerController extends BaseController {
 

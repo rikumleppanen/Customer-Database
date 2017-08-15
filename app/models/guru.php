@@ -28,7 +28,7 @@ class Guru extends BaseModel {
     }
 
     public static function find($id) {
-        $query = DB::connection()->prepare('SELECT * FROM Guru WHERE id =: id LIMIT 1');
+        $query = DB::connection()->prepare('SELECT * FROM Guru WHERE id =:id LIMIT 1');
         $query->execute(array('id' => $id));
         $row = $query->fetch();
         if ($row) {

@@ -46,9 +46,17 @@
                         <li><a href="{{base_path}}/qsum">Summary</a></li>
 
                     </ul>
+                    {% if user_logged_in %}
+                    <form class="navbas-form navbar-right" method="post" action="{{base_path}}/logout">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-link">Log out ({{user_logged_in.name}})</button>
+                        </div>
+                    </form>
+                    {% else %}
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{{base_path}}">Sign in</a></li>
-                    </ul>
+                        <li><a href="{{base_path}}/login">Sign in</a></li>
+                    </ul>                    
+                    {% endif %}
                 </div>
             </div>
         </nav>
