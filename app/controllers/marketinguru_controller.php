@@ -8,7 +8,7 @@ class MarketinguruController extends BaseController {
 
     public static function handle_login() {
         $params = $_POST;
-        $user = Guru::authenticate($params['email'], $params['password']);
+        $user = Marketinguru::authenticate($params['email'], $params['password']);
         if (!$user) {
             View::make('login.html', array('error' => 'Check your email address and/or password!', 'email' => $params['email']));
         } else {
@@ -18,12 +18,12 @@ class MarketinguruController extends BaseController {
     }
 
     public static function index() {
-        $users = Guru::all();
+        $users = Marketinguru::all();
         View::make('browseUsers.html', array('users' => $users));
     }
 
     public static function find($id) {
-        $user = Guru::find($id);
+        $user = Marketinguru::find($id);
         //Kint::dump($user);
         View::make('modifyUser.html', array('user' => $user));
     }
@@ -48,7 +48,7 @@ class MarketinguruController extends BaseController {
             $mguru['admin_rights'] = $params['admin_rights'];
         }
 
-        $user = new Guru($mguru);
+        $user = new Marketinguru($mguru);
         $user->save();
         Redirect::to('/users/' . $user->id, array('message' => 'User is created successfully!'));
     }
@@ -65,7 +65,7 @@ class MarketinguruController extends BaseController {
             $mguru['admin_rights'] = $params['admin_rights'];
         }
 
-        $user = new Guru($mguru);
+        $user = new Marketinguru($mguru);
         //Kint::dump($user);
         $user->update();
         Redirect::to('/users/' . $user->id, array('message' => 'Updated successfully!'));
@@ -73,7 +73,7 @@ class MarketinguruController extends BaseController {
 
     public static function destroy($id) {
         $attributes = array('id' => $id);
-        $user = new Guru($attributes);
+        $user = new Marketinguru($attributes);
         $user->destroy();
         Redirect::to('/users', array('message' => 'User is deleted from the database.'));
     }

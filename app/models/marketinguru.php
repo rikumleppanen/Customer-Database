@@ -1,6 +1,6 @@
 <?php
 
-class Guru extends BaseModel {
+class Marketinguru extends BaseModel {
 
     public $id, $name, $email, $admin_rights, $password;
 
@@ -10,13 +10,13 @@ class Guru extends BaseModel {
     }
 
     public static function all() {
-        $query = DB::connection()->prepare('SELECT * FROM Guru');
+        $query = DB::connection()->prepare('SELECT * FROM Marketinguru');
         $query->execute();
         $rows = $query->fetchAll();
         $messages = array();
 
         foreach ($rows as $row) {
-            $messages[] = new Guru(array(
+            $messages[] = new Marketinguru(array(
                 'id' => $row['id'],
                 'name' => $row['name'],
                 'email' => $row['email'],
@@ -28,7 +28,7 @@ class Guru extends BaseModel {
     }
 
     public static function find($id) {
-        $query = DB::connection()->prepare('SELECT * FROM Guru WHERE id =:id LIMIT 1');
+        $query = DB::connection()->prepare('SELECT * FROM Marketinguru WHERE id =:id LIMIT 1');
         $query->execute(array('id' => $id));
         $row = $query->fetch();
         if ($row) {
@@ -45,7 +45,7 @@ class Guru extends BaseModel {
     }
 
     public static function admin_rights($id) {
-        $query = DB::connection()->prepare('SELECT * FROM Guru WHERE id =:id AND admin_rights IS TRUE LIMIT 1');
+        $query = DB::connection()->prepare('SELECT * FROM Marketinguru WHERE id =:id AND admin_rights IS TRUE LIMIT 1');
         $query->execute(array('id' => $id));
         $row = $query->fetch();
         if ($row) {
@@ -55,7 +55,7 @@ class Guru extends BaseModel {
     }
 
     public static function authenticate($email, $password) {
-        $query = DB::connection()->prepare('SELECT * FROM Guru WHERE email=:email AND password=:password LIMIT 1');
+        $query = DB::connection()->prepare('SELECT * FROM Marketinguru WHERE email=:email AND password=:password LIMIT 1');
         $query->execute(array('email' => $email, 'password' => $password));
         $row = $query->fetch();
         if ($row) {
@@ -72,21 +72,21 @@ class Guru extends BaseModel {
     }
 
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Guru (name, email, admin_rights, password) VALUES (:name, :email, :admin_rights, :password) RETURNING id');
+        $query = DB::connection()->prepare('INSERT INTO Marketinguru (name, email, admin_rights, password) VALUES (:name, :email, :admin_rights, :password) RETURNING id');
         $query->execute(array('name' => $this->name, 'email' => $this->email, 'admin_rights' => $this->admin_rights, 'password' => $this->password));
         $row = $query->fetch();
         $this->id = $row['id'];
     }
 
     public function update() {
-        $query = DB::connection()->prepare('UPDATE Guru SET name=:name, email=:email, admin_rights=:admin_rights, password=:password WHERE id=:id RETURNING id');
+        $query = DB::connection()->prepare('UPDATE Marketinguru SET name=:name, email=:email, admin_rights=:admin_rights, password=:password WHERE id=:id RETURNING id');
         $query->execute(array('name' => $this->name, 'email' => $this->email, 'admin_rights' => $this->admin_rights, 'password' => $this->password, 'id' => $this->id));
         $row = $query->fetch();
         $this->id = $row['id'];
     }
 
     public function destroy() {
-        $query = DB::connection()->prepare('DELETE FROM Guru WHERE id=:id');
+        $query = DB::connection()->prepare('DELETE FROM Marketinguru WHERE id=:id');
         $query->execute(array('id' => $this->id));
     }
 

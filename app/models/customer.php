@@ -2,7 +2,7 @@
 
 class Customer extends BaseModel {
 
-    public $id, $name, $email, $address, $number, $email_consent, $address_consent, $number_consent, $sms_consent, $thirdparty_consent, $tstz;
+    public $id, $name, $email, $address, $number, $email_consent, $address_consent, $number_consent, $sms_consent, $thirdparty_consent, $created, $modified, $modifier;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -32,7 +32,9 @@ class Customer extends BaseModel {
                 'number_consent' => $row['number_consent'],
                 'sms_consent' => $row['sms_consent'],
                 'thirdparty_consent' => $row['thirdparty_consent'],
-                'tstz' => $row['tstz']
+                'created' => $row['created'],
+                'modified'=> $row['modified'],
+                'modifier' => $row['modifier']
             ));
         }
 
@@ -56,7 +58,9 @@ class Customer extends BaseModel {
                 'number_consent' => $row['number_consent'],
                 'sms_consent' => $row['sms_consent'],
                 'thirdparty_consent' => $row['thirdparty_consent'],
-                'tstz' => $row['tstz']
+                'created' => $row['created'],
+                'modified'=> $row['modified'],
+                'modifier' => $row['modifier']
             ));
 
             return $customer;
@@ -66,15 +70,15 @@ class Customer extends BaseModel {
     }
 
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Customer (name, email, address, number, email_consent, address_consent, number_consent, sms_consent, thirdparty_consent) VALUES (:name, :email, :address, :number, :email_consent, :address_consent, :number_consent, :sms_consent, :thirdparty_consent) RETURNING id');
+        $query = DB::connection()->prepare('INSERT INTO Customer (name, email, address, number, email_consent, address_consent, number_consent, sms_consent, thirdparty_consent, created) VALUES (:name, :email, :address, :number, :email_consent, :address_consent, :number_consent, :sms_consent, :thirdparty_consent, LOCALTIMESTAMP) RETURNING id');
         $query->execute(array('name' => $this->name, 'email' => $this->email, 'address' => $this->address, 'number' => $this->number, 'email_consent' => $this->email_consent, 'address_consent' => $this->address_consent, 'number_consent' => $this->number_consent, 'sms_consent' => $this->sms_consent, 'thirdparty_consent' => $this->thirdparty_consent));
         $row = $query->fetch();
         $this->id = $row['id'];
     }
 
     public function update() {
-        $query = DB::connection()->prepare('UPDATE Customer SET name=:name, email=:email, address=:address, number=:number, email_consent=:email_consent, address_consent=:address_consent, number_consent=:number_consent, sms_consent=:sms_consent, thirdparty_consent=:thirdparty_consent WHERE id=:id RETURNING id');
-        $query->execute(array('name' => $this->name, 'email' => $this->email, 'address' => $this->address, 'number' => $this->number, 'email_consent' => $this->email_consent, 'address_consent' => $this->address_consent, 'number_consent' => $this->number_consent, 'sms_consent' => $this->sms_consent, 'thirdparty_consent' => $this->thirdparty_consent, 'id' => $this->id));
+        $query = DB::connection()->prepare('UPDATE Customer SET name=:name, email=:email, address=:address, number=:number, email_consent=:email_consent, address_consent=:address_consent, number_consent=:number_consent, sms_consent=:sms_consent, thirdparty_consent=:thirdparty_consent, modified=LOCALTIMESTAMP, modifier=:modifier WHERE id=:id RETURNING id');
+        $query->execute(array('name' => $this->name, 'email' => $this->email, 'address' => $this->address, 'number' => $this->number, 'email_consent' => $this->email_consent, 'address_consent' => $this->address_consent, 'number_consent' => $this->number_consent, 'sms_consent' => $this->sms_consent, 'thirdparty_consent' => $this->thirdparty_consent, 'modifier' => $this->modifier, 'id' => $this->id));
         $row = $query->fetch();
         $this->id = $row['id'];
     }

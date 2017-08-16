@@ -1,4 +1,4 @@
-CREATE TABLE Guru(
+CREATE TABLE Marketinguru(
     id SERIAL PRIMARY KEY, 
     name varchar(60) NOT NULL, 
     email varchar(40) NOT NULL, 
@@ -8,7 +8,7 @@ CREATE TABLE Guru(
 CREATE TABLE Query(
     id SERIAL PRIMARY KEY,
     tstz TIMESTAMPTZ, 
-    guru INTEGER REFERENCES Guru(id));
+    guru INTEGER REFERENCES Marketinguru(id));
 
 CREATE TABLE Customer(
     id SERIAL PRIMARY KEY, 
@@ -21,7 +21,9 @@ CREATE TABLE Customer(
     number_consent boolean,
     sms_consent boolean,
     thirdparty_consent boolean,
-    tstz TIMESTAMPTZ);
+    created TIMESTAMP,
+    modified TIMESTAMP,
+    modifier integer REFERENCES Marketinguru(id));
 
 CREATE TABLE QueryCustomer(
     id SERIAL PRIMARY KEY, 

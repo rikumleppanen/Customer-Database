@@ -1,10 +1,10 @@
-INSERT INTO Guru(name, email, admin_rights,password) VALUES ('Matti Mansikka', 'matti@testi.com','t','1234');
-INSERT INTO Guru(name, email, admin_rights,password) VALUES ('Raija Ratikka', 'raija@testi.com','f','4321');
-INSERT INTO Guru(name, email, admin_rights,password) VALUES ('Ville Vilperi', 'ville','f','12345');
-INSERT INTO Query(tstz,guru) VALUES (NOW(), (SELECT id FROM Guru WHERE name = 'Matti Mansikka'));
-INSERT INTO Customer(name, tstz) VALUES ('Osakeyhtiö AB', NOW());
-INSERT INTO Customer(name, email, address, number, email_consent, address_consent, thirdparty_consent, tstz) VALUES ('Ville','ak@ak.fi','Lopeentie','0101111', 't','t','t', NOW());
-INSERT INTO Customer(name, email, address, number, email_consent, address_consent, thirdparty_consent, tstz) VALUES ('Aino V','aino@hotnail.fi','Nakkitie','0101111', 't','t','f', NOW());
+INSERT INTO Marketinguru(name, email, admin_rights,password) VALUES ('Matti Testaaja', 'matti@testi.com','t','1234');
+INSERT INTO Marketinguru(name, email, admin_rights,password) VALUES ('Raija Testaaja', 'raija@testi.com','f','4321');
+INSERT INTO Marketinguru(name, email, admin_rights,password) VALUES ('Ville Testaaja', 'ville@testi.com','f','12345');
+INSERT INTO Query(tstz,guru) VALUES (NOW(), (SELECT id FROM Guru WHERE name = 'Matti Testaaja'));
+INSERT INTO Customer(name, created) VALUES ('Osakeyhtiö AB', NOW());
+INSERT INTO Customer(name, email, address, number, email_consent, address_consent, thirdparty_consent, created) VALUES ('Ville','ak@ak.fi','Lopeentie','0101111', 't','t','t', NOW());
+INSERT INTO Customer(name, email, address, number, email_consent, address_consent, thirdparty_consent, created) VALUES ('Aino V','aino@hotnail.fi','Nakkitie','0101111', 't','t','f', NOW());
 INSERT INTO QueryCustomer(query, customer) VALUES ((SELECT id FROM Query WHERE guru = '1'),(SELECT id FROM Customer WHERE name = 'Osakeyhtiö AB'));
 INSERT INTO Consent(label) VALUES ('Phone');
 INSERT INTO Consent(label) VALUES ('Email');

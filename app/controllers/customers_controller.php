@@ -32,7 +32,7 @@ class CustomerController extends BaseController {
             'name' => $params['name'],
             'email' => $params['email'],
             'address' => $params['address'],
-            'number' => $params['number']
+            'number' => $params['number']    
         );
         if (array_key_exists('email_consent', $params)) {
             $cust['email_consent'] = $params['email_consent'];
@@ -68,7 +68,8 @@ class CustomerController extends BaseController {
             'name' => $params['name'],
             'email' => $params['email'],
             'address' => $params['address'],
-            'number' => $params['number']
+            'number' => $params['number'],
+            'modifier' => self::get_user_logged_in()->id
         );
         if (array_key_exists('email_consent', $params)) {
             $cust['email_consent'] = $params['email_consent'];
