@@ -11,18 +11,18 @@ function check_admin_rights() {
 $routes->get('/', function() {
     HelloWorldController::index();
 });
+//
+//$routes->get('/hiekkalaatikko', function() {
+//    HelloWorldController::sandbox();
+//});
+//
+//$routes->get('/qlist', function() {
+//    HelloWorldController::guru_list();
+//});
 
-$routes->get('/hiekkalaatikko', function() {
-    HelloWorldController::sandbox();
-});
-
-$routes->get('/qlist', function() {
-    HelloWorldController::guru_list();
-});
-
-$routes->get('/edit', function() {
-    HelloWorldController::guru_change();
-});
+//$routes->get('/edit', function() {
+//    HelloWorldController::guru_change();
+//});
 
 $routes->get('/login', function() {
     MarketinguruController::login();
@@ -40,31 +40,39 @@ $routes->get('/query', 'check_logged_in', function() {
     HelloWorldController::guru_query();
 });
 
-$routes->get('/qsum', function() {
+$routes->get('/qsum', 'check_logged_in', function() {
     HelloWorldController::guru_qsum();
 });
 
-$routes->get('/customers', function() {
+$routes->get('/customers', 'check_logged_in', function() {
     CustomerController::index();
 });
 
-$routes->post('/customers/new', function() {
+$routes->post('/customers/new', 'check_logged_in', function() {
     CustomerController::store();
 });
 
-$routes->get('/customers/new', function() {
+$routes->get('/customers/new', 'check_logged_in', function() {
     CustomerController::create();
 });
 
-$routes->get('/customers/delete/:id', function($id) {
+$routes->get('/customers/delete/:id', 'check_logged_in', function($id) {
     CustomerController::destroy($id);
 });
 
-$routes->get('/customers/:id', function($id) {
+$routes->get('/customers/:id', 'check_logged_in', function($id) {
     CustomerController::find($id);
 });
 
-$routes->post('/customers/:id', function($id) {
+$routes->get('/customers/modify/:id', 'check_logged_in', function($id) {
+    CustomerController::modify($id);
+});
+
+$routes->get('/customers/modify/:id', 'check_logged_in', function($id) {
+    CustomerController::find($id);
+});
+
+$routes->post('/customers/modify/:id', 'check_logged_in', function($id) {
     CustomerController::update($id);
 });
 

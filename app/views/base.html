@@ -37,7 +37,6 @@
                     <a class="navbar-brand" href="{{base_path}}">DEMO</a>
                 </div>
                 <div class="collapse navbar-collapse" id="navigation">
-                    {% if user_logged_in and user_logged_in.admin_rights == true %}
                     <ul class="nav navbar-nav">
                         <!-- Navigaation linkit -->
                         <li><a href="{{base_path}}/users">Users</a></li>
@@ -45,19 +44,6 @@
                         <li><a href="{{base_path}}/query">Queries</a></li>
                         <li><a href="{{base_path}}/qsum">Summary</a></li>
                     </ul>
-                    {% elseif user_logged_in %}
-                    <ul class="nav navbar-nav">
-                        <li><a href="">     </a></li>
-                        <li><a href="{{base_path}}/customers">Customers</a></li>
-                        <li><a href="{{base_path}}/query">Queries</a></li>
-                        <li><a href="{{base_path}}/qsum">Summary</a></li>
-                    </ul>   
-                    {% else %}
-                    <ul class="nav navbar-nav">
-                        <li><a href="">     </a></li>
-                        <li><a href="{{base_path}}/customers">Customers</a></li>
-                    </ul>  
-                    {% endif %}
                     {% if user_logged_in %}
                     <form class="navbas-form navbar-right" method="post" action="{{base_path}}/logout">
                         <div class="form-group">
