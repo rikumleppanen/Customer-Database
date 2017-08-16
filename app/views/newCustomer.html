@@ -5,46 +5,89 @@
 <div class="alert alert-success">{{message}}</div>
 {% endif %}
 
+{% if error %}
+<div class="alert alert-danger">
+    {{error}}
+</div>
+{% endif %}
+
+{% if errors %}
+{% for e in errors %}
+<div class="alert alert-danger">
+    {{e}}
+</div>
+{% endfor %}
+{% endif %}
+
 <h1>Create a customer </h1>
 
 <form method="post" action="{{base_path}}/customers/new">
     <div class="container">
         <br><p>Consents</p>
         <div class="btn-group col-xs-12" data-toggle="buttons">
+            {% if customer.email_consent == true %}
+            <label class="btn btn-primary active">
+                <input name="email_consent" type="checkbox" checked="checked" value="1">Email
+            </label>
+            {% elseif customer.email_consent == false %}
             <label class="btn btn-primary">
                 <input name="email_consent" type="checkbox" value="1">Email
             </label>
+            {% endif %}
+            {% if customer.address_consent == true %}
+            <label class="btn btn-primary active">
+                <input name="address_consent" type="checkbox" checked="checked" value="1">Direct
+            </label>
+            {% elseif customer.address_consent == false %}
             <label class="btn btn-primary">
                 <input name="address_consent" type="checkbox" value="1">Direct
             </label>
+            {% endif %}
+            {% if customer.number_consent == true %}
+            <label class="btn btn-primary active">
+                <input name="number_consent" type="checkbox" checked="checked" value="1">Phone
+            </label>
+            {% elseif customer.number_consent == false %}
             <label class="btn btn-primary">
                 <input name="number_consent" type="checkbox" value="1">Phone
             </label>
+            {% endif %}
+            {% if customer.sms_consent == true %}
+            <label class="btn btn-primary active">
+                <input name="sms_consent" type="checkbox" checked="checked" value="1">SMS
+            </label>
+            {% elseif customer.sms_consent == false %}
             <label class="btn btn-primary">
                 <input name="sms_consent" type="checkbox" value="1">SMS
             </label>
-
+            {% endif %}
+            {% if customer.thirdparty_consent == true %}
+            <label class="btn btn-primary active">
+                <input name="thirdparty_consent" type="checkbox" checked="checked" value="1">ThirdParty
+            </label>
+            {% elseif customer.thirdparty_consent == false %}
             <label class="btn btn-primary">
                 <input name="thirdparty_consent" type="checkbox" value="1">ThirdParty
             </label>
+            {% endif %}
         </div>
     </div>
 
     <div class="form-group">
         <label>Name</label>
-        <input name="name" class="form-control" value="" type="text">
+        <input name="name" class="form-control" autofocus='autofocus' value="{{customer.name}}" type="text">
     </div>
     <div class="form-group">
         <label>Email address</label>
-        <input name="email" class="form-control" value="" type="text">
+        <input name="email" class="form-control" value="{{customer.email}}" type="text">
     </div>
     <div class="form-group">
         <label>Post address</label>
-        <input name="address" class="form-control" value="" type="text">
+        <input name="address" class="form-control" value="{{customer.address}}" type="text">
     </div>
     <div class="form-group">
         <label>Phone number</label>
-        <input name="number" class="form-control" value="" type="text">
+        <input name="number" class="form-control" value="{{customer.number}}" type="text">
     </div>
     <div>
         <button type="submit" class="btn btn-primary">Save</button>

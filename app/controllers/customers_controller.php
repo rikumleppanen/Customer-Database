@@ -17,7 +17,11 @@ class CustomerController extends BaseController {
         $customer = Customer::find($id);
         View::make('modifyCustomer.html', array('customer' => $customer));
     }
-
+    
+    public static function modifyerror($id) {
+        $customer = Customer::find($id);
+        View::make('modifyerrorCustomer.html', array('customer' => $customer));
+    }
     public static function create() {
         View::make('newCustomer.html');
     }
@@ -28,16 +32,16 @@ class CustomerController extends BaseController {
             'name' => $params['name'],
             'email' => $params['email'],
             'address' => $params['address'],
-            'number' => $params['number'],
+            'number' => $params['number']
         );
         if (array_key_exists('email_consent', $params)) {
             $cust['email_consent'] = $params['email_consent'];
         }
-        if (array_key_exists('number_consent', $params)) {
-            $cust['number_consent'] = $params['number_consent'];
-        }
         if (array_key_exists('address_consent', $params)) {
             $cust['address_consent'] = $params['address_consent'];
+        }
+        if (array_key_exists('number_consent', $params)) {
+            $cust['number_consent'] = $params['number_consent'];
         }
         if (array_key_exists('sms_consent', $params)) {
             $cust['sms_consent'] = $params['sms_consent'];
@@ -45,7 +49,14 @@ class CustomerController extends BaseController {
         if (array_key_exists('thirdparty_consent', $params)) {
             $cust['thirdparty_consent'] = $params['thirdparty_consent'];
         }
+        $cust["number"] = preg_replace("/\s+/", '', $cust["number"]);
         $customer = new Customer($cust);
+
+        $errors = $customer->errors();
+
+        if (count($errors) > 0) {
+            Redirect::to('/customers/new', array('errors' => $errors, 'customer' => $cust));
+        }
         $customer->save();
         Redirect::to('/customers/' . $customer->id, array('message' => 'Customer is created successfully!'));
     }
@@ -62,11 +73,11 @@ class CustomerController extends BaseController {
         if (array_key_exists('email_consent', $params)) {
             $cust['email_consent'] = $params['email_consent'];
         }
-        if (array_key_exists('number_consent', $params)) {
-            $cust['number_consent'] = $params['number_consent'];
-        }
         if (array_key_exists('address_consent', $params)) {
             $cust['address_consent'] = $params['address_consent'];
+        }
+        if (array_key_exists('number_consent', $params)) {
+            $cust['number_consent'] = $params['number_consent'];
         }
         if (array_key_exists('sms_consent', $params)) {
             $cust['sms_consent'] = $params['sms_consent'];
@@ -74,7 +85,14 @@ class CustomerController extends BaseController {
         if (array_key_exists('thirdparty_consent', $params)) {
             $cust['thirdparty_consent'] = $params['thirdparty_consent'];
         }
+        $cust["number"] = preg_replace("/\s+/", '', $cust["number"]);
         $customer = new Customer($cust);
+
+        $errors = $customer->errors();
+
+        if (count($errors) > 0) {
+            Redirect::to('/customers/modifyerror/' . $customer->id, array('errors' => $errors, 'info' => $cust));
+        }
         $customer->update();
         Redirect::to('/customers/' . $customer->id, array('message' => 'Updated successfully!'));
     }

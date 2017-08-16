@@ -6,6 +6,20 @@
 <div class="alert alert-success">{{message}}</div>
 {% endif %}
 
+{% if error %}
+<div class="alert alert-danger">
+    {{error}}
+</div>
+{% endif %}
+
+{% if errors %}
+{% for e in errors %}
+<div class="alert alert-danger">
+    {{e}}
+</div>
+{% endfor %}
+{% endif %}
+
 <h1>User {{user.name}}</h1>
 
 <form method="post" action="{{base_path}}/users/{{user.id}}">

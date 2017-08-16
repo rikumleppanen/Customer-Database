@@ -19,7 +19,6 @@ $routes->get('/', function() {
 //$routes->get('/qlist', function() {
 //    HelloWorldController::guru_list();
 //});
-
 //$routes->get('/edit', function() {
 //    HelloWorldController::guru_change();
 //});
@@ -52,6 +51,10 @@ $routes->post('/customers/new', 'check_logged_in', function() {
     CustomerController::store();
 });
 
+$routes->post('/customers/new', 'check_logged_in', function() {
+    CustomerController::create();
+});
+
 $routes->get('/customers/new', 'check_logged_in', function() {
     CustomerController::create();
 });
@@ -64,6 +67,10 @@ $routes->get('/customers/:id', 'check_logged_in', function($id) {
     CustomerController::find($id);
 });
 
+$routes->post('/customers/modify/:id', 'check_logged_in', function($id) {
+    CustomerController::update($id);
+});
+
 $routes->get('/customers/modify/:id', 'check_logged_in', function($id) {
     CustomerController::modify($id);
 });
@@ -72,8 +79,12 @@ $routes->get('/customers/modify/:id', 'check_logged_in', function($id) {
     CustomerController::find($id);
 });
 
-$routes->post('/customers/modify/:id', 'check_logged_in', function($id) {
+$routes->post('/customers/modifyerror/:id', 'check_logged_in', function($id) {
     CustomerController::update($id);
+});
+
+$routes->get('/customers/modifyerror/:id', 'check_logged_in', function($id) {
+    CustomerController::modifyerror($id);
 });
 
 $routes->get('/users', 'check_admin_rights', function() {
