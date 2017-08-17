@@ -35,9 +35,6 @@ $routes->post('/logout', function() {
     MarketinguruController::logout();
 });
 
-$routes->get('/query', 'check_logged_in', function() {
-    HelloWorldController::guru_query();
-});
 
 $routes->get('/qsum', 'check_logged_in', function() {
     HelloWorldController::guru_qsum();
@@ -111,4 +108,23 @@ $routes->get('/users/delete/:id', 'check_admin_rights', function($id) {
     MarketinguruController::destroy($id);
 });
 
+$routes->get('/queries', 'check_logged_in', function() {
+    QueryController::index();
+});
+
+$routes->post('/queries/new', 'check_logged_in', function() {
+    QueryController::store();
+});
+
+$routes->post('/queries/new', 'check_logged_in', function() {
+    QueryController::create();
+});
+
+$routes->get('/queries/new', 'check_logged_in', function() {
+    QueryController::create();
+});
+
+$routes->get('/queries/:id', 'check_logged_in', function($id) {
+    QueryController::find($id);
+});
 

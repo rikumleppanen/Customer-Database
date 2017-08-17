@@ -7,8 +7,15 @@ CREATE TABLE Marketinguru(
 
 CREATE TABLE Query(
     id SERIAL PRIMARY KEY,
-    tstz TIMESTAMPTZ, 
-    guru INTEGER REFERENCES Marketinguru(id));
+    name varchar(60),
+    created TIMESTAMP, 
+    guru INTEGER REFERENCES Marketinguru(id),
+    email_consent boolean DEFAULT FALSE,
+    address_consent boolean DEFAULT FALSE,
+    number_consent boolean DEFAULT FALSE,
+    sms_consent boolean DEFAULT FALSE,
+    thirdparty_consent boolean DEFAULT FALSE
+    );
 
 CREATE TABLE Customer(
     id SERIAL PRIMARY KEY, 
@@ -25,17 +32,20 @@ CREATE TABLE Customer(
     modified TIMESTAMP,
     modifier integer REFERENCES Marketinguru(id));
 
-CREATE TABLE QueryCustomer(
+CREATE TABLE Querycustomer(
     id SERIAL PRIMARY KEY, 
     query INTEGER REFERENCES Query(id), 
     customer integer REFERENCES Customer(id));
 
-CREATE TABLE Consent(
+CREATE TABLE Product(
     id SERIAL PRIMARY KEY, 
-    label varchar(50) NOT NULL);
+    name varchar(50) NOT NULL);
 
-CREATE TABLE CustomerConsent(
+CREATE TABLE Subscription(
     id SERIAL PRIMARY KEY, 
+    startdate varchar(40),
+    enddate varchar(40),
+    created varchar(40),
+    cancelled varchar(40),
     customer INTEGER REFERENCES Customer(id), 
-    consent INTEGER  REFERENCES Consent(id),
-    tstz TIMESTAMPTZ);
+    product INTEGER REFERENCES Product(id));

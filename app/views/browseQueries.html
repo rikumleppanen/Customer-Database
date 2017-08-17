@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if message %}
+<div class="alert alert-success">{{message}}</div>
+{% endif %}
+
+{% if error %}
+<div class="alert alert-danger">
+    {{error}}
+</div>
+{% endif %}
+
+<h1>Queries</h1>
+
+<p>
+    <a href="{{base_path}}/queries/new" class="btn btn-success">Add a new query</a>
+</p>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Created</th>
+            <th>Created by</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for mquery in mqueries %}
+        <tr>
+            <td><a href="{{base_path}}/queries/{{mquery.id}}">{{mquery.name}}</a></td>
+            <td>{{mquery.created}}</td>
+            <td>{{mquery.guru}}</td>
+            <th><a class="btn btn-default btn-sm" href="{{base_path}}/queries/{{mquery.id}}">Browse</a></th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
