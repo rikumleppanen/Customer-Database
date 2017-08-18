@@ -14,7 +14,8 @@ CREATE TABLE Query(
     address_consent boolean DEFAULT FALSE,
     number_consent boolean DEFAULT FALSE,
     sms_consent boolean DEFAULT FALSE,
-    thirdparty_consent boolean DEFAULT FALSE
+    thirdparty_consent boolean DEFAULT FALSE,
+    sum_rows integer
     );
 
 CREATE TABLE Customer(

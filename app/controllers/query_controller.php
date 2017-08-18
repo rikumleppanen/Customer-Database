@@ -9,7 +9,8 @@ class QueryController extends BaseController {
 
     public static function find($id) {
         $mquery = Query::find($id);
-        View::make('browseAQuery.html', array('mquery' => $mquery));
+        $customers = Query::display($id);
+        View::make('browseAQuery.html', array('mquery' => $mquery, 'customers' => $customers));
     }
 
     public static function create() {
@@ -18,7 +19,6 @@ class QueryController extends BaseController {
 
     public static function store() {
         $params = $_POST;
-        Kint::dump($params);
         $cust = array(
             'name' => $params['name'],
             'guru' => $_SESSION['user']
@@ -39,14 +39,17 @@ class QueryController extends BaseController {
             $cust['thirdparty_consent'] = $params['thirdparty_consent'];
         }
         $query = new Query($cust);
-        Kint::dump($query);
+
         $errors = $query->errors();
-        Kint::dump($errors);
+
         if (count($errors) > 0) {
             Redirect::to('/queries/new', array('errors' => $errors, 'query' => $cust));
         }      
         $query->save();
-        Redirect::to('/queries/' . $query->id, array('message' => 'Query is to be created'));
+        $query->collect();
+//        $query->save_rows($query->id);
+        $customers = $query->display($query->id);
+        Redirect::to('/queries/' . $query->id, array('message' => 'The requested query has been created', 'customers' => $customers));
     }
 
 }

@@ -1,5 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
+
+{% if message %}
+<div class="alert alert-success">{{message}}</div>
+{% endif %}
+
+{% if error %}
+<div class="alert alert-danger">
+    {{error}}
+</div>
+{% endif %}
+
+{% if errors %}
+{% for e in errors %}
+<div class="alert alert-danger">
+    {{e}}
+</div>
+{% endfor %}
+{% endif %}
+
 <h1>Select the consents</h1>
 
 <form method="post" action="{{base_path}}/queries/new">
@@ -27,7 +46,7 @@
     </div>
     <div class="form-group">
         <label>Give a name to the query</label>
-        <input name="name" class="form-control" value="" type="text">
+        <input name="name" class="form-control" autofocus="autofocus" value="" type="text">
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-info">Create</button>
