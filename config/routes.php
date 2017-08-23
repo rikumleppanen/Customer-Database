@@ -128,3 +128,17 @@ $routes->get('/queries/:id', 'check_logged_in', function($id) {
     QueryController::find($id);
 });
 
+$routes->get('/customers/:customerid/newsubs', 'check_logged_in', function($customerid) {
+    SubsController::initialize($customerid);
+});
+
+$routes->post('/customers/:customerid/newsubs', 'check_logged_in', function() {
+    SubsController::store();
+});
+$routes->post('/customers/:customerid/modifyerror', 'check_logged_in', function($customerid) {
+    SubsController::store();
+});
+
+$routes->get('/customers/:customerid/modifyerror', 'check_logged_in', function($customerid) {
+    SubsController::modifyerror($customerid);
+});
