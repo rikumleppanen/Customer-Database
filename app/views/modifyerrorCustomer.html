@@ -101,8 +101,10 @@
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Save</button>
     </div>
-    <div class="form-group">
-        <a href="{{base_path}}/customers/delete/{{customer.id}}" class="btn btn-danger" role="button">Delete this customer</a>
+</form>
+<form method="post" action="{{base_path}}/customers/delete/{{customer.id}}" class="destroy-form" data-confirm="Your decision is final and cannot be reversed">
+    <div>
+        <button type="submit" class="btn btn-danger">Delete this customer</button>
     </div>
 </form>
 {% endblock %}

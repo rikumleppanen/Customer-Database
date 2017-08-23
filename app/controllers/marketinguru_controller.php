@@ -38,6 +38,7 @@ class MarketinguruController extends BaseController {
     }
 
     public static function store() {
+        self::check_admin_rights();
         $params = $_POST;
         $mguru = array(
             'name' => $params['name'],
