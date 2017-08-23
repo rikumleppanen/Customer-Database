@@ -28,6 +28,6 @@ Sign in as a normal user: raija@testi.com, password: 4321
 * [Modify an Existing Customer](http://rile.users.cs.helsinki.fi/tsoha/customers/3) (working as planned)
 * [List of Users](http://rile.users.cs.helsinki.fi/tsoha/users) (working as planned)
 * [Create a User](http://rile.users.cs.helsinki.fi/tsoha/users/new) (working as planned)
-* [List of Queries](http://rile.users.cs.helsinki.fi/tsoha/queries) (under development)
-* [Make a Query](http://rile.users.cs.helsinki.fi/tsoha/queries/new) (under development)
+* [List of Queries](http://rile.users.cs.helsinki.fi/tsoha/queries) (working as planned)
+* [Make a Query](http://rile.users.cs.helsinki.fi/tsoha/queries/new) (working as planned)
 * [Summary/Front Page](http://rile.users.cs.helsinki.fi/tsoha/qsum) (under development)
