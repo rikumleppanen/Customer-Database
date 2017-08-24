@@ -44,6 +44,10 @@ $routes->get('/customers', 'check_logged_in', function() {
     CustomerController::index();
 });
 
+$routes->get('/customerslist', 'check_logged_in', function() {
+    CustomerController::index2();
+});
+
 $routes->post('/customers/new', 'check_logged_in', function() {
     CustomerController::store();
 });

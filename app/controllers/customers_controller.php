@@ -7,6 +7,14 @@ class CustomerController extends BaseController {
         View::make('browseCustomers.html', array('customers' => $customers));
     }
 
+    public static function index2() {
+        $customers = Customer::all();
+        $cusubs = CustomerSubscription::all();
+        $products = Product::all();
+        Kint::dump($customers);
+        View::make('browseCustomersList.html', array('customers' => $customers, 'cusubs' => $cusubs, 'products' => $products));
+    }
+
     public static function find($id) {
         $customer = Customer::find($id);
         //Kint::dump($customer);
@@ -17,11 +25,12 @@ class CustomerController extends BaseController {
         $customer = Customer::find($id);
         View::make('modifyCustomer.html', array('customer' => $customer));
     }
-    
+
     public static function modifyerror($id) {
         $customer = Customer::find($id);
         View::make('modifyerrorCustomer.html', array('customer' => $customer));
     }
+
     public static function create() {
         View::make('newCustomer.html');
     }
@@ -32,7 +41,7 @@ class CustomerController extends BaseController {
             'name' => $params['name'],
             'email' => $params['email'],
             'address' => $params['address'],
-            'number' => $params['number']    
+            'number' => $params['number']
         );
         if (array_key_exists('email_consent', $params)) {
             $cust['email_consent'] = $params['email_consent'];

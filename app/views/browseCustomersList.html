@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+{% if message %}
+<div class="alert alert-success">{{message}}</div>
+{% endif %}
+
+{% if error %}
+<div class="alert alert-danger">
+    {{error}}
+</div>
+{% endif %}
+
+<h1>List customers</h1>
+
+<p>
+    <a href="{{base_path}}/customers/new" class="btn btn-success">Add a new customer</a>
+</p>
+
+<div class="container">
+    <h2>Customers</h2>
+    <p>Click a customer to see subscriptions and close it.</p>
+    <div class="panel-group">
+        {% for customer in customers %}
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <ul class="customer-navibar">
+                    <li><a data-toggle="collapse" href="#{{customer.id}}">{{customer.name}}</a></li>
+                    <li><a data-toggle="collapse" href="#{{customer.id}}">{{customer.email}}</a></li>
+                </ul> 
+            </div>
+            <div id="{{customer.id}}" class="panel-collapse collapse">
+                <div class="panel-heading">Heading</div>
+                {% for product in products %}
+                {% for cusub in cusubs %}
+                {% if cusub.customerid==customer.id and cusub.product==product.id %}
+                <ul class="list-group">
+                    <li class="list-group-item" id="subs-status{{cusub.status}}">
+                        <ul class="subs-navibar">
+                            <li>{{product.name}}</li>
+                            <li>{{cusub.startdate}}</li>
+                            <li>{{cusub.enddate}}</li>
+                        </ul>
+                    </li>
+                </ul>
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+                <div class="panel-footer">Footer</div>
+
+            </div>
+        </div>
+
+
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+

@@ -33,7 +33,7 @@ class Customer extends BaseModel {
                 'sms_consent' => $row['sms_consent'],
                 'thirdparty_consent' => $row['thirdparty_consent'],
                 'created' => $row['created'],
-                'modified'=> $row['modified'],
+                'modified' => $row['modified'],
                 'modifier' => $row['modifier']
             ));
         }
@@ -59,7 +59,7 @@ class Customer extends BaseModel {
                 'sms_consent' => $row['sms_consent'],
                 'thirdparty_consent' => $row['thirdparty_consent'],
                 'created' => $row['created'],
-                'modified'=> $row['modified'],
+                'modified' => $row['modified'],
                 'modifier' => $row['modifier']
             ));
 

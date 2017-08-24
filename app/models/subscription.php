@@ -8,7 +8,7 @@ class Subscription extends BaseModel {
         parent::__construct($attributes);
         $this->validators = array('validate_startdate');
     }
-
+    
     public function save() {
         $query = DB::connection()->prepare('INSERT INTO Subscription (startdate, created, customer, product) VALUES (:startdate, LOCALTIMESTAMP, :customer::int, :product::int) RETURNING customer');
         $query->execute(array('startdate' => $this->startdate, 'customer' => $this->customer, 'product' => $this->product));
