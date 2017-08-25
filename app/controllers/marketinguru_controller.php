@@ -13,7 +13,7 @@ class MarketinguruController extends BaseController {
             View::make('login.html', array('error' => 'Check your email address and/or password!', 'email' => $params['email']));
         } else {
             $_SESSION['user'] = $user->id;
-            Redirect::to('/customers', array('message' => 'Welcome ' . $user->name . '!'));
+            Redirect::to('', array('message' => 'Welcome ' . $user->name . '!'));
         }
     }
 
@@ -50,8 +50,13 @@ class MarketinguruController extends BaseController {
         }
 
         $user = new Marketinguru($mguru);
-        $user->save();
-        Redirect::to('/users/' . $user->id, array('message' => 'User is created successfully!'));
+        $errors = $user->errors();
+        if (count($errors) > 0) {
+            Redirect::to('/users/new', array('errors' => $errors, 'mguru' => $mguru));
+        } else {
+            $user->save();
+            Redirect::to('/users/' . $user->id, array('message' => 'User is created successfully!'));
+        }
     }
 
     public static function update() {
@@ -67,9 +72,15 @@ class MarketinguruController extends BaseController {
         }
 
         $user = new Marketinguru($mguru);
-        //Kint::dump($user);
-        $user->update();
-        Redirect::to('/users/' . $user->id, array('message' => 'Updated successfully!'));
+
+        $errors = $user->errors();
+
+        if (count($errors) > 0) {
+            Redirect::to('/users/:id' . $user->id, array('errors' => $errors, 'mguru' => $mguru));
+        } else {
+            $user->update();
+            Redirect::to('/users/' . $user->id, array('message' => 'Updated successfully!'));
+        }
     }
 
     public static function destroy($id) {

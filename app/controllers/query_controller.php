@@ -44,12 +44,13 @@ class QueryController extends BaseController {
 
         if (count($errors) > 0) {
             Redirect::to('/queries/new', array('errors' => $errors, 'query' => $cust));
-        }      
-        $query->save();
-        $query->collect();
+        } else {
+            $query->save();
+            $query->collect();
 //        $query->save_rows($query->id);
-        $customers = $query->display($query->id);
-        Redirect::to('/queries/' . $query->id, array('message' => 'The requested query has been created', 'customers' => $customers));
+            $customers = $query->display($query->id);
+            Redirect::to('/queries/' . $query->id, array('message' => 'The requested query has been created', 'customers' => $customers));
+        }
     }
 
 }

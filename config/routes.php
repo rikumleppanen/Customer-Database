@@ -85,7 +85,7 @@ $routes->post('/customers/modifyerror/:id', 'check_logged_in', function($id) {
 });
 
 $routes->get('/customers/modifyerror/:id', 'check_logged_in', function($id) {
-    CustomerController::modifyerror($id);
+    CustomerController::modifyError($id);
 });
 
 $routes->get('/users', 'check_admin_rights', function() {

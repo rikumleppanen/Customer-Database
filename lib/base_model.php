@@ -27,4 +27,16 @@ class BaseModel {
         return $errors;
     }
 
+//    public function isUnique($email) {
+//        $query = DB::connection()->prepare('SELECT COUNT(*) FROM Marketinguru WHERE email=:email');
+//        $query->execute(array('email' => $email));
+//        $row = $query->fetch();
+//
+//        if (sum($row['count']) > 0) {
+//            return false;
+//        } else {
+//            return true;
+//        }
+//    }
 }
+    

@@ -26,7 +26,7 @@ class CustomerController extends BaseController {
         View::make('modifyCustomer.html', array('customer' => $customer));
     }
 
-    public static function modifyerror($id) {
+    public static function modifyError($id) {
         $customer = Customer::find($id);
         View::make('modifyerrorCustomer.html', array('customer' => $customer));
     }
@@ -65,9 +65,10 @@ class CustomerController extends BaseController {
 
         if (count($errors) > 0) {
             Redirect::to('/customers/new', array('errors' => $errors, 'customer' => $cust));
+        } else {
+            $customer->save();
+            Redirect::to('/customers/' . $customer->id, array('message' => 'Customer is created successfully!'));
         }
-        $customer->save();
-        Redirect::to('/customers/' . $customer->id, array('message' => 'Customer is created successfully!'));
     }
 
     public static function update($id) {
@@ -102,9 +103,10 @@ class CustomerController extends BaseController {
 
         if (count($errors) > 0) {
             Redirect::to('/customers/modifyerror/' . $customer->id, array('errors' => $errors, 'info' => $cust));
+        } else {
+            $customer->update();
+            Redirect::to('/customers/' . $customer->id, array('message' => 'Updated successfully!'));
         }
-        $customer->update();
-        Redirect::to('/customers/' . $customer->id, array('message' => 'Updated successfully!'));
     }
 
     public static function destroy($id) {

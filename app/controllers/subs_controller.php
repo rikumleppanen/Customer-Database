@@ -29,9 +29,10 @@ class SubsController extends BaseController {
 
         if (count($errors) > 0) {
             Redirect::to('/customers/' . $subscription->customer . '/modifyerror', array('errors' => $errors, 'cu' => $subs));
+        } else {
+            $subscription->save();
+            Redirect::to('/customers/' . $subscription->customer, array('message' => 'Subscription is created successfully!'));
         }
-        $subscription->save();
-        Redirect::to('/customers/' . $subscription->customer, array('message' => 'Subscription is created successfully!'));
     }
 
 }

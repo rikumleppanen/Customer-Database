@@ -6,7 +6,7 @@ class Marketinguru extends BaseModel {
 
     public function __construct($attributes = null) {
         parent::__construct($attributes);
-        $this->validators = array('validate_email');
+        $this->validators = array('validate_email', 'validate_password');
     }
 
     public static function all() {
@@ -93,9 +93,25 @@ class Marketinguru extends BaseModel {
     public function validate_email() {
         $errors = array();
         if ($this->email == '' || $this->email == null || $this->email != '%@%') {
-            $errors[] = 'Give your email address, please!';
+            $errors[] = 'Give the email address, please!';
         }
         return $errors;
     }
+
+    public function validate_password() {
+        $errors = array();
+        if (strlen($this->password) < 4) {
+            $errors[] = 'Give at least four (4) characters, please!';
+        }
+        return $errors;
+    }
+
+//    public function validate_uniqueness() {
+//        $errors = array();
+//        if (!isUnique($this->email)) {
+//            $errors[] = 'There cannot be several registered users with the same email address';
+//        }
+//        return $errors;
+//    }
 
 }

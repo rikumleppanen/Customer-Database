@@ -19,6 +19,10 @@
 {% endfor %}
 {% endif %}
 
+{% if user_logged_in %}
+
+{% else %}
+
 <h1>Welcome to Customer Database</h1>
 <!-- Kaikki lomakkeen elementit form-tagin sisään -->
 <form method="post" action="{{base_path}}/login">
@@ -36,4 +40,5 @@
 
     <button type="submit" class="btn btn-primary">Sign in</button>
 </form>
+{% endif %}
 {% endblock %}
