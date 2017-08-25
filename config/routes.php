@@ -60,8 +60,8 @@ $routes->get('/customers/new', 'check_logged_in', function() {
     CustomerController::create();
 });
 
-$routes->get('/customers/delete/:id', 'check_logged_in', function($id) {
-    CustomerController::destroy($id);
+$routes->post('/customers/delete/:id', 'check_logged_in', function($id) {
+    CustomerController::delete($id);
 });
 
 $routes->get('/customers/:id', 'check_logged_in', function($id) {
@@ -108,8 +108,8 @@ $routes->post('/users/:id', 'check_admin_rights', function($id) {
     MarketinguruController::update($id);
 });
 
-$routes->get('/users/delete/:id', 'check_admin_rights', function($id) {
-    MarketinguruController::destroy($id);
+$routes->post('/users/delete/:id', 'check_admin_rights', function($id) {
+    MarketinguruController::delete($id);
 });
 
 $routes->get('/queries', 'check_logged_in', function() {

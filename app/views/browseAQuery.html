@@ -8,7 +8,7 @@
 
 <h1>Query {{mquery.name}}</h1>
 
-<p>
+
 <form>
 
     <div class="container">
@@ -65,27 +65,33 @@
         </div>
     </div>
 </form>
+<p>  
 </p>
+<div>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email address</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for customer in customers %}
+
+            <tr>
+                <td><a href="{{base_path}}/customers/{{customer.id}}">{{customer.name}}</a></td>
+                <td>{{customer.email}}</td>
+                <th><a class="btn btn-default btn-sm" href="{{base_path}}/customers/{{customer.id}}">Change</a></th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<form method="post" action="{{base_path}}/queries/delete/{{query.id}}" class="destroy-form" data-confirm="Your decision is final and cannot be reversed">
     <div>
-        <table class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email address</th>
-                    <th></th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {% for customer in customers %}
-
-                <tr>
-                    <td><a href="{{base_path}}/customers/{{customer.id}}">{{customer.name}}</a></td>
-                    <td>{{customer.email}}</td>
-                    <th><a class="btn btn-default btn-sm" href="{{base_path}}/customers/{{customer.id}}">Change</a></th>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <button type="submit" class="btn btn-danger">Delete this query</button>
     </div>
+</form>
 {% endblock %}

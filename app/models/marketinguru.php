@@ -28,7 +28,7 @@ class Marketinguru extends BaseModel {
     }
 
     public static function find($id) {
-        $query = DB::connection()->prepare('SELECT * FROM Marketinguru WHERE id =:id LIMIT 1');
+        $query = DB::connection()->prepare('SELECT * FROM Marketinguru WHERE id=:id LIMIT 1');
         $query->execute(array('id' => $id));
         $row = $query->fetch();
         if ($row) {
@@ -45,7 +45,7 @@ class Marketinguru extends BaseModel {
     }
 
     public static function admin_rights($id) {
-        $query = DB::connection()->prepare('SELECT * FROM Marketinguru WHERE id =:id AND admin_rights IS TRUE LIMIT 1');
+        $query = DB::connection()->prepare('SELECT * FROM Marketinguru WHERE id=:id AND admin_rights IS TRUE LIMIT 1');
         $query->execute(array('id' => $id));
         $row = $query->fetch();
         if ($row) {
@@ -92,7 +92,7 @@ class Marketinguru extends BaseModel {
 
     public function validate_email() {
         $errors = array();
-        if ($this->email == '' || $this->email == null || $this->email != '%@%') {
+        if ($this->email != '' and ! filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             $errors[] = 'Give the email address, please!';
         }
         return $errors;

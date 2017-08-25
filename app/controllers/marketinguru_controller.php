@@ -83,7 +83,7 @@ class MarketinguruController extends BaseController {
         }
     }
 
-    public static function destroy($id) {
+    public static function delete($id) {
         $attributes = array('id' => $id);
         $user = new Marketinguru($attributes);
         $user->destroy();

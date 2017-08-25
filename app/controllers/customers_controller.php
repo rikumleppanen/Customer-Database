@@ -109,7 +109,7 @@ class CustomerController extends BaseController {
         }
     }
 
-    public static function destroy($id) {
+    public static function delete($id) {
         $attributes = array('id' => $id);
         $customer = new Customer($attributes);
         $customer->destroy();

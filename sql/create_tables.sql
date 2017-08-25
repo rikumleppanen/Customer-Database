@@ -1,22 +1,23 @@
 CREATE TABLE Marketinguru(
     id SERIAL PRIMARY KEY, 
     name varchar(60) NOT NULL, 
-    email varchar(40) NOT NULL, 
+    email varchar(40) NOT NULL UNIQUE, 
     admin_rights boolean,
-    password varchar(50) NOT NULL);
+    password varchar(50) NOT NULL
+);
 
 CREATE TABLE Query(
     id SERIAL PRIMARY KEY,
     name varchar(60),
     created TIMESTAMP, 
-    guru INTEGER REFERENCES Marketinguru(id),
+    guru integer REFERENCES Marketinguru(id) ON DELETE CASCADE,
     email_consent boolean DEFAULT FALSE,
     address_consent boolean DEFAULT FALSE,
     number_consent boolean DEFAULT FALSE,
     sms_consent boolean DEFAULT FALSE,
     thirdparty_consent boolean DEFAULT FALSE,
     sum_rows integer
-    );
+);
 
 CREATE TABLE Customer(
     id SERIAL PRIMARY KEY, 
@@ -24,29 +25,33 @@ CREATE TABLE Customer(
     email varchar(40),
     address varchar(120),
     number varchar(20),
-    email_consent boolean,
-    address_consent boolean,
-    number_consent boolean,
-    sms_consent boolean,
-    thirdparty_consent boolean,
+    email_consent boolean DEFAULT FALSE,
+    address_consent boolean DEFAULT FALSE,
+    number_consent boolean DEFAULT FALSE,
+    sms_consent boolean DEFAULT FALSE,
+    thirdparty_consent boolean DEFAULT FALSE,
     created TIMESTAMP,
     modified TIMESTAMP,
-    modifier integer REFERENCES Marketinguru(id));
+    modifier integer REFERENCES Marketinguru(id) ON DELETE CASCADE
+);
 
-CREATE TABLE Querycustomer(
-    id SERIAL PRIMARY KEY, 
-    query INTEGER REFERENCES Query(id), 
-    customer integer REFERENCES Customer(id));
+CREATE TABLE Querycustomer(  
+    query integer REFERENCES Query(id) ON DELETE CASCADE,
+    customer integer REFERENCES Customer(id) ON DELETE CASCADE,
+    PRIMARY KEY (query, customer)
+);
 
 CREATE TABLE Product(
     id SERIAL PRIMARY KEY, 
-    name varchar(50) NOT NULL);
+    name varchar(50) NOT NULL
+);
 
 CREATE TABLE Subscription(
     id SERIAL PRIMARY KEY, 
-    startdate varchar(40),
-    enddate varchar(40),
-    created varchar(40),
-    cancelled varchar(40),
-    customer INTEGER REFERENCES Customer(id), 
-    product INTEGER REFERENCES Product(id));
+    startdate VARCHAR(40),
+    enddate VARCHAR(40),
+    created VARCHAR(40),
+    cancelled VARCHAR(40),
+    customer INTEGER REFERENCES Customer(id),
+    product INTEGER REFERENCES Product(id)
+);
