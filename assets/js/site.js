@@ -11,6 +11,19 @@ $(document).ready(function () {
         }
     });
 });
+
+$('label').click(function () {
+    var checked = $('input:checkbox', this).is(':checked');
+    if ($(this).is(':contains("SELECTED")')) {
+        var text = $(this).text().split('(')[0]
+        $('span', this).text(checked ? text : text);
+    } else {
+        var text = $(this).text();
+        $('span', this).text(checked ? text : text + ' (SELECTED)');
+    }
+    
+
+});
 //$(document).ready(function() {
 //    var date = new Date();
 //    

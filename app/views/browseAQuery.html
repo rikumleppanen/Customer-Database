@@ -18,47 +18,47 @@
 
             {% if mquery.email_consent == true %}
             <label class="btn btn-primary disabled">
-                <input name="email_consent" type="checkbox" checked="checked" value="1">Email
+                <input name="email_consent" type="checkbox" checked="checked" value="1"><span>Email (SELECTED)</span>
             </label>
             {% elseif mquery.email_consent == false %}
             <label class="btn btn-info disabled">
-                <input name="email_consent" type="checkbox" value="1">Email
+                <input name="email_consent" type="checkbox" value="1"><span>Email</span>
             </label>
             {% endif %}
             {% if mquery.address_consent == true %}
             <label class="btn btn-primary disabled">
-                <input name="address_consent" type="checkbox" checked="checked" value="1">Direct
+                <input name="address_consent" type="checkbox" checked="checked" value="1"><span>Direct (SELECTED)</span>
             </label>
             {% elseif mquery.address_consent == false %}
             <label class="btn btn-info disabled">
-                <input name="address_consent" type="checkbox" value="1">Direct
+                <input name="address_consent" type="checkbox" value="1"><span>Direct</span>
             </label>
             {% endif %}
             {% if mquery.number_consent == true %}
             <label class="btn btn-primary disabled">
-                <input name="number_consent" type="checkbox" checked="checked" value="1">Phone
+                <input name="number_consent" type="checkbox" checked="checked" value="1"><span>Phone (SELECTED)</span>
             </label>
             {% elseif mquery.number_consent == false %}
             <label class="btn btn-info disabled">
-                <input name="number_consent" type="checkbox" value="1">Phone
+                <input name="number_consent" type="checkbox" value="1"><span>Phone</span>
             </label>
             {% endif %}
             {% if mquery.sms_consent == true %}
             <label class="btn btn-primary disabled">
-                <input name="sms_consent" type="checkbox" checked="checked" value="1">SMS
+                <input name="sms_consent" type="checkbox" checked="checked" value="1"><span>SMS (SELECTED)</span>
             </label>
             {% elseif mquery.sms_consent == false %}
             <label class="btn btn-info disabled">
-                <input name="sms_consent" type="checkbox" value="1">SMS
+                <input name="sms_consent" type="checkbox" value="1"><span>SMS</span>
             </label>
             {% endif %}
             {% if mquery.thirdparty_consent == true %}
             <label class="btn btn-primary disabled">
-                <input name="thirdparty_consent" type="checkbox" checked="checked" value="1">ThirdParty
+                <input name="thirdparty_consent" type="checkbox" checked="checked" value="1"><span>ThirdParty (SELECTED)</span>
             </label>
             {% elseif mquery.thirdparty_consent == false %}
             <label class="btn btn-info disabled">
-                <input name="thirdparty_consent" type="checkbox" value="1">ThirdParty
+                <input name="thirdparty_consent" type="checkbox" value="1"><span>ThirdParty</span>
             </label>
             {% endif %}
 

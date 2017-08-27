@@ -31,11 +31,11 @@
 
             {% if user.admin_rights == true %}
             <label class="btn btn-primary active">
-                <input name="admin_rights" type="checkbox" checked="checked" value="1">Admin
+                <input name="admin_rights" type="checkbox" checked="checked" value="1"><span>Admin (SELECTED)</span>
             </label>
             {% elseif user.admin_rights == false %}
             <label class="btn btn-primary">
-                <input name="admin_rights" type="checkbox" value="1">Admin
+                <input name="admin_rights" type="checkbox" value="1"><span>Admin</span>
             </label>
             {% endif %}
         </div>
@@ -77,11 +77,11 @@
 
             {% if user.admin_rights == true %}
             <label class="btn btn-primary disabled">
-                <input name="admin_rights" type="checkbox" checked="checked" value="1">Admin
+                <input name="admin_rights" type="checkbox" checked="checked" value="1"><span>Admin (SELECTED)</span>
             </label>
             {% elseif user.admin_rights == false %}
             <label class="btn btn-primary disabled">
-                <input name="admin_rights" type="checkbox" value="1">Admin
+                <input name="admin_rights" type="checkbox" value="1"><span>Admin</span>
             </label>
             {% endif %}
         </div>

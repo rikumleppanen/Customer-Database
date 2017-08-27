@@ -31,47 +31,47 @@
 
             {% if customer.email_consent == true %}
             <label class="btn btn-primary active">
-                <input name="email_consent" type="checkbox" checked="checked" value="1">Email
+                <input name="email_consent" type="checkbox" checked="checked" value="1"><span>Email (SELECTED)</span>
             </label>
             {% elseif customer.email_consent == false %}
             <label class="btn btn-primary">
-                <input name="email_consent" type="checkbox" value="1">Email
+                <input name="email_consent" type="checkbox" value="1"><span>Email</span>
             </label>
             {% endif %}
             {% if customer.address_consent == true %}
             <label class="btn btn-primary active">
-                <input name="address_consent" type="checkbox" checked="checked" value="1">Direct
+                <input name="address_consent" type="checkbox" checked="checked" value="1"><span>Direct (SELECTED)</pan>
             </label>
             {% elseif customer.address_consent == false %}
             <label class="btn btn-primary">
-                <input name="address_consent" type="checkbox" value="1">Direct
+                <input name="address_consent" type="checkbox" value="1"><span>Direct</span>
             </label>
             {% endif %}
             {% if customer.number_consent == true %}
             <label class="btn btn-primary active">
-                <input name="number_consent" type="checkbox" checked="checked" value="1">Phone
+                <input name="number_consent" type="checkbox" checked="checked" value="1"><span>Phone (SELECTED</span>
             </label>
             {% elseif customer.number_consent == false %}
             <label class="btn btn-primary">
-                <input name="number_consent" type="checkbox" value="1">Phone
+                <input name="number_consent" type="checkbox" value="1"><span>Phone</span>
             </label>
             {% endif %}
             {% if customer.sms_consent == true %}
             <label class="btn btn-primary active">
-                <input name="sms_consent" type="checkbox" checked="checked" value="1">SMS
+                <input name="sms_consent" type="checkbox" checked="checked" value="1"><span>SMS (SELECTED)</span>
             </label>
             {% elseif customer.sms_consent == false %}
             <label class="btn btn-primary">
-                <input name="sms_consent" type="checkbox" value="1">SMS
+                <input name="sms_consent" type="checkbox" value="1"><span>SMS</span>
             </label>
             {% endif %}
             {% if customer.thirdparty_consent == true %}
             <label class="btn btn-primary active">
-                <input name="thirdparty_consent" type="checkbox" checked="checked" value="1">ThirdParty
+                <input name="thirdparty_consent" type="checkbox" checked="checked" value="1"><span>ThirdParty (SELECTED)</span>
             </label>
             {% elseif customer.thirdparty_consent == false %}
             <label class="btn btn-primary">
-                <input name="thirdparty_consent" type="checkbox" value="1">ThirdParty
+                <input name="thirdparty_consent" type="checkbox" value="1"><span>ThirdParty</span>
             </label>
             {% endif %}
 
