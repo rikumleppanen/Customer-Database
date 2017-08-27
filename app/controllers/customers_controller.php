@@ -17,8 +17,10 @@ class CustomerController extends BaseController {
 
     public static function find($id) {
         $customer = Customer::find($id);
-        //Kint::dump($customer);
-        View::make('browseACustomer.html', array('customer' => $customer));
+        $queries = Query::findQueriesByCustomer($id);
+        $subs = Subscription::findByCustomer($id);
+        $products = Product::all();
+        View::make('browseACustomer.html', array('customer' => $customer, 'queries' => $queries, 'subs' => $subs, 'products' => $products));
     }
 
     public static function modify($id) {

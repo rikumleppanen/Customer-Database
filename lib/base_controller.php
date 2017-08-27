@@ -25,9 +25,7 @@ class BaseController {
             if ($rights == FALSE) {
                 Redirect::to('/login', array('error' => 'You have no rights for entering the requested area'));
             }
-        } else {
-            check_logged_in();
-        }
+        } 
     }
 
 }

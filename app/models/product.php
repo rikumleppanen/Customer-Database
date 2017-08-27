@@ -23,7 +23,7 @@ class Product extends BaseModel {
         }
         return $messages;
     }
-
+    
     public function validate_name() {
         $errors = array();
         if ($this->name == '' || $this->name == null) {

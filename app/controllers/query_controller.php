@@ -47,7 +47,8 @@ class QueryController extends BaseController {
         } else {
             $query->save();
             $query->collect();
-//        $query->save_rows($query->id);
+            $sum = $query->count($query->id);
+            $query->save_count($query->id, $sum);
             $customers = $query->display($query->id);
             Redirect::to('/queries/' . $query->id, array('message' => 'The requested query has been created', 'customers' => $customers));
         }

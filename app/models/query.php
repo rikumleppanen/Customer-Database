@@ -60,15 +60,17 @@ class Query extends BaseModel {
         $query->execute(array('id' => $this->id, 'email_consent' => $this->email_consent, 'address_consent' => $this->address_consent, 'number_consent' => $this->number_consent, 'sms_consent' => $this->sms_consent, 'thirdparty_consent' => $this->thirdparty_consent));
     }
 
-//    public function save_rows($id) {
-//        $query = DB::connection()->prepare('SELECT COUNT(*) as sum FROM Querycustomer WHERE query=:id');
-//        $query->execute(array('id' => $id));
-//        $row = $query->fetch();
-//
-//        //$this->sum_rows = $row['sum'];
-//        $query2 = DB::connection()->prepare('UPDATE Query SET sum_rows=:sum_rows WHERE query=:id');
-//        $query2->execute(array('sum_rows'=> $row['sum'], 'id' => $id));
-//    }
+    public static function count($id) {
+        $query = DB::connection()->prepare('SELECT COUNT(*) FROM Querycustomer WHERE query=:id');
+        $query->execute(array('id' => $id));
+        $row = $query->fetch();
+        return $row[0];
+    }
+
+    public static function save_count($id, $number) {
+        $query = DB::connection()->prepare('UPDATE Query SET sum_rows=:sum_rows::int WHERE id=:id');
+        $query->execute(array('sum_rows' => $number, 'id' => $id));
+    }
 
     public static function display($id) {
         $query2 = DB::connection()->prepare('SELECT * FROM Customer WHERE id IN(SELECT customer FROM Querycustomer WHERE query=:id)');
@@ -81,6 +83,22 @@ class Query extends BaseModel {
                 'id' => $row['id'],
                 'name' => $row['name'],
                 'email' => $row['email']
+            ));
+        }
+        return $messages;
+    }
+
+    public static function findQueriesByCustomer($customer) {
+        $query = DB::connection()->prepare('SELECT qu.id, qu.name, qu.created::date FROM Query qu, Querycustomer quc WHERE qu.id = quc.query AND quc.customer=:customer ORDER BY qu.created DESC');
+        $query->execute(array('customer' => $customer));
+        $rows = $query->fetchAll();
+        $messages = array();
+
+        foreach ($rows as $row) {
+            $messages[] = new Query(array(
+                'id' => $row['id'],
+                'name' => $row['name'],
+                'created' => $row['created']
             ));
         }
         return $messages;
