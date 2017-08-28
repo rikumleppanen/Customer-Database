@@ -27,16 +27,52 @@ class BaseModel {
         return $errors;
     }
 
-//    public function isUnique($email) {
-//        $query = DB::connection()->prepare('SELECT COUNT(*) FROM Marketinguru WHERE email=:email');
-//        $query->execute(array('email' => $email));
-//        $row = $query->fetch();
-//
-//        if (sum($row['count']) > 0) {
-//            return false;
-//        } else {
-//            return true;
-//        }
-//    }
+    public function validate_email() {
+        $errors = array();
+        if ($this->email != '' and ! filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            $errors[] = 'Give the email address, please!';
+        }
+        return $errors;
+    }
+
+    public function validate_password() {
+        $errors = array();
+        if (strlen($this->password) < 4) {
+            $errors[] = 'Give at least four (4) characters for the password, please!';
+        }
+        return $errors;
+    }
+
+    public function validate_EmailUniqueness() {
+        $errors = array();
+        $unique = Marketinguru::isUnique($this->email);
+        Kint::dump($unique);
+        if ($unique[0] > 0) {
+            $errors[] = 'There cannot be several registered users with the same email address';
+        }
+        return $errors;
+    }
+
+    public function validate_number() {
+        $errors = array();
+        if ($this->number != '' and ! preg_match("/^[\s\d]+$/", $this->number)) {
+            $errors[] = 'No white space, extra characters or country codes are needed in phone number!';
+        }
+        return $errors;
+    }
+
+    public function validate_name() {
+        $errors = array();
+        if ($this->name == '' || $this->name == null) {
+            $errors[] = 'You must give a name!';
+        }
+        if (!preg_match('/^[a-öA-Ö ]*$/', $this->name)) {
+            $errors[] = 'Only letters and white space allowed for name!';
+        }
+        if (strlen($this->name) < 5) {
+            $errors[] = 'Name requires at least 5 characters';
+        }
+        return $errors;
+    }
+
 }
-    

@@ -88,27 +88,27 @@ $routes->get('/customers/modifyerror/:id', 'check_logged_in', function($id) {
     CustomerController::modifyError($id);
 });
 
-$routes->get('/users', 'check_admin_rights', function() {
+$routes->get('/users', 'check_logged_in', 'check_admin_rights', function() {
     MarketinguruController::index();
 });
 
-$routes->post('/users/new', 'check_admin_rights', function() {
+$routes->post('/users/new', 'check_logged_in', 'check_admin_rights', function() {
     MarketinguruController::store();
 });
 
-$routes->get('/users/new', 'check_admin_rights', function() {
+$routes->get('/users/new', 'check_logged_in', 'check_admin_rights', function() {
     MarketinguruController::create();
 });
 
-$routes->get('/users/:id', 'check_admin_rights', function($id) {
+$routes->get('/users/:id', 'check_logged_in', 'check_admin_rights', function($id) {
     MarketinguruController::find($id);
 });
 
-$routes->post('/users/:id', 'check_admin_rights', function($id) {
+$routes->post('/users/:id', 'check_logged_in', 'check_admin_rights', function($id) {
     MarketinguruController::update($id);
 });
 
-$routes->post('/users/delete/:id', 'check_admin_rights', function($id) {
+$routes->post('/users/delete/:id', 'check_logged_in', 'check_admin_rights', function($id) {
     MarketinguruController::delete($id);
 });
 

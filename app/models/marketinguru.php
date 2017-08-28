@@ -6,7 +6,7 @@ class Marketinguru extends BaseModel {
 
     public function __construct($attributes = null) {
         parent::__construct($attributes);
-        $this->validators = array('validate_email', 'validate_password');
+        $this->validators = array('validate_email', 'validate_EmailUniqueness', 'validate_password');
     }
 
     public static function all() {
@@ -90,28 +90,11 @@ class Marketinguru extends BaseModel {
         $query->execute(array('id' => $this->id));
     }
 
-    public function validate_email() {
-        $errors = array();
-        if ($this->email != '' and ! filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-            $errors[] = 'Give the email address, please!';
-        }
-        return $errors;
+    public function isUnique($email) {
+        $query = DB::connection()->prepare('SELECT COUNT(*) FROM Marketinguru WHERE email=:email');
+        $query->execute(array('email' => $email));
+        $row = $query->fetch();
+        return $row;
     }
-
-    public function validate_password() {
-        $errors = array();
-        if (strlen($this->password) < 4) {
-            $errors[] = 'Give at least four (4) characters, please!';
-        }
-        return $errors;
-    }
-
-//    public function validate_uniqueness() {
-//        $errors = array();
-//        if (!isUnique($this->email)) {
-//            $errors[] = 'There cannot be several registered users with the same email address';
-//        }
-//        return $errors;
-//    }
 
 }

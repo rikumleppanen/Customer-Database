@@ -8,7 +8,7 @@ class Subscription extends BaseModel {
         parent::__construct($attributes);
         $this->validators = array('validate_startdate');
     }
-    
+
     public static function findByCustomer($customerid) {
         $query = DB::connection()->prepare('SELECT * FROM Subscription WHERE customer=:customerid ORDER BY created DESC');
         $query->execute(array('customerid' => $customerid));
@@ -16,7 +16,7 @@ class Subscription extends BaseModel {
         $messages = array();
 
         foreach ($rows as $row) {
-               $messages[] = new Subscription(array(
+            $messages[] = new Subscription(array(
                 'id' => $row['id'],
                 'startdate' => $row['startdate'],
                 'enddate' => $row['enddate'],
@@ -28,6 +28,7 @@ class Subscription extends BaseModel {
         }
         return $messages;
     }
+
     public function save() {
         $query = DB::connection()->prepare('INSERT INTO Subscription (startdate, created, customer, product) VALUES (:startdate, LOCALTIMESTAMP, :customer::int, :product::int) RETURNING customer');
         $query->execute(array('startdate' => $this->startdate, 'customer' => $this->customer, 'product' => $this->product));
@@ -39,6 +40,11 @@ class Subscription extends BaseModel {
         $errors = array();
         if ($this->startdate == '') {
             $errors[] = 'Starting date is not valid!';
+        }
+        $time = date('c');
+        $date = explode("T",$time)[0];
+        if ($this->startdate < $date) {
+            $errors[] = 'The startdate cannot be in the past!';
         }
         return $errors;
     }

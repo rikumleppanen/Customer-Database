@@ -6,7 +6,7 @@ class Customer extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_name', 'validate_email', 'validate_number');
+        $this->validators = array('validate_name', 'validate_email', 'validate_number',);
     }
 
     public static function say_hi() {
@@ -88,34 +88,5 @@ class Customer extends BaseModel {
         $query->execute(array('id' => $this->id));
     }
 
-    public function validate_name() {
-        $errors = array();
-        if ($this->name == '' || $this->name == null) {
-            $errors[] = 'You must give a name!';
-        }
-        if (!preg_match('/^[a-öA-Ö ]*$/', $this->name)) {
-            $errors[] = 'Only letters and white space allowed for name!';
-        }
-        if (strlen($this->name) < 5) {
-            $errors[] = 'Name requires at least 5 characters';
-        }
-        return $errors;
-    }
-
-    public function validate_email() {
-        $errors = array();
-        if ($this->email != '' and ! filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-            $errors[] = 'Check the email address!';
-        }
-        return $errors;
-    }
-
-    public function validate_number() {
-        $errors = array();
-        if ($this->number != '' and ! preg_match("/^[\s\d]+$/", $this->number)) {
-            $errors[] = 'No white space, extra characters or country codes are needed in phone number!';
-        }
-        return $errors;
-    }
 
 }
