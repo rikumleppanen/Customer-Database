@@ -104,6 +104,7 @@
                             <th>Product</th>
                             <th>Startdate</th>
                             <th>Enddate</th>
+                            <th></th>
                         </tr>
                     </thead>
 
@@ -116,6 +117,7 @@
                             <td><a href="{{base_path}}/customers/{{customer.id}}/subs/{{sub.id}}">{{product.name}}</a></td>
                             <td>{{sub.startdate}}</td>
                             <td>{{sub.enddate}}</td>
+                            <th><a class="btn btn-danger btn-sm" href="{{base_path}}/customers/{{customer.id}}/subs/{{sub.id}}">Cancel</a></th> 
                         </tr>
                         {% endif %}
                         {% endfor %}

@@ -146,3 +146,12 @@ $routes->post('/customers/:customerid/modifyerror', 'check_logged_in', function(
 $routes->get('/customers/:customerid/modifyerror', 'check_logged_in', function($customerid) {
     SubsController::modifyerror($customerid);
 });
+
+
+$routes->get('/customers/:customerid/subs/:subsid', 'check_logged_in', function($customerid, $subsid) {
+    SubsController::cancellation($customerid, $subsid);
+});
+
+$routes->post('/customers/:customerid/subs/:subsid', 'check_logged_in', function($customerid, $subsid) {
+    SubsController::cancel($customerid, $subsid);
+});

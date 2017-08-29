@@ -75,4 +75,37 @@ class BaseModel {
         return $errors;
     }
 
+    public function validate_dateFormat($datetime) {
+        $errors = array();
+        $date = DateTime::createFromFormat('Y-m-d', $datetime);
+        $date_errors = DateTime::getLastErrors();
+        if ($date_errors['warning_count'] + $date_errors['error_count'] > 0) {
+            $errors[] = 'Insert date in the following form YYYY-MM-DD!';
+        }
+        return $errors;
+    }
+
+    public function validate_date($datetime) {
+        $errors = array();
+        if ($datetime == '') {
+            $errors[] = 'Date cannot be empty!';
+        }
+        $time = date('c');
+        $date = explode("T", $time)[0];
+        if ($datetime < $date) {
+            $errors[] = 'The date cannot be in the past!';
+        }
+        return $errors;
+    }
+
+    public function validate_subscription() {
+        $errors = array();
+        if (!is_null($this->enddate)) {
+            if ($this->startdate > $this->enddate) {
+                $errors[] = 'Subscription has to have a valid length.';
+            }
+            return $errors;
+        }
+    }
+
 }

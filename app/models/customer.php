@@ -6,7 +6,7 @@ class Customer extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_name', 'validate_email', 'validate_number',);
+        $this->validators = array('validate_name', 'validate_email', 'validate_number');
     }
 
     public static function say_hi() {
