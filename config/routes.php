@@ -11,17 +11,6 @@ function check_admin_rights() {
 $routes->get('/', function() {
     HelloWorldController::index();
 });
-//
-//$routes->get('/hiekkalaatikko', function() {
-//    HelloWorldController::sandbox();
-//});
-//
-//$routes->get('/qlist', function() {
-//    HelloWorldController::guru_list();
-//});
-//$routes->get('/edit', function() {
-//    HelloWorldController::guru_change();
-//});
 
 $routes->get('/login', function() {
     MarketinguruController::login();
@@ -34,7 +23,6 @@ $routes->post('/login', function() {
 $routes->post('/logout', function() {
     MarketinguruController::logout();
 });
-
 
 $routes->get('/qsum', 'check_logged_in', function() {
     HelloWorldController::guru_qsum();
@@ -79,14 +67,6 @@ $routes->get('/customers/modify/:id', 'check_logged_in', function($id) {
 $routes->get('/customers/modify/:id', 'check_logged_in', function($id) {
     CustomerController::find($id);
 });
-
-//$routes->post('/customers/modifyerror/:id', 'check_logged_in', function($id) {
-//    CustomerController::update($id);
-//});
-//
-//$routes->get('/customers/modifyerror/:id', 'check_logged_in', function($id) {
-//    CustomerController::modifyError($id);
-//});
 
 $routes->get('/users', 'check_logged_in', 'check_admin_rights', function() {
     MarketinguruController::index();
@@ -139,14 +119,6 @@ $routes->get('/customers/:customerid/newsubs', 'check_logged_in', function($cust
 $routes->post('/customers/:customerid/newsubs', 'check_logged_in', function() {
     SubsController::store();
 });
-$routes->post('/customers/:customerid/modifyerror', 'check_logged_in', function() {
-    SubsController::store();
-});
-
-$routes->get('/customers/:customerid/modifyerror', 'check_logged_in', function($customerid) {
-    SubsController::modifyerror($customerid);
-});
-
 
 $routes->get('/customers/:customerid/subs/:subsid', 'check_logged_in', function($customerid, $subsid) {
     SubsController::cancellation($customerid, $subsid);

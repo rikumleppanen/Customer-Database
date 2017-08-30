@@ -14,11 +14,11 @@ class SubsController extends BaseController {
         View::make('cancelASubs.html', array('products' => $products, 'customer' => $customer, 'subsid' => $subsid));
     }
 
-    public static function modifyerror($customerid) {
-        $products = Product::all();
-        $customer = Customer::find($customerid);
-        View::make('modifyerrorSubs.html', array('products' => $products, 'customer' => $customer));
-    }
+//    public static function modifyerror($customerid) {
+//        $products = Product::all();
+//        $customer = Customer::find($customerid);
+//        View::make('modifyerrorSubs.html', array('products' => $products, 'customer' => $customer));
+//    }
 
     public static function store() {
         $params = $_POST;
@@ -33,7 +33,7 @@ class SubsController extends BaseController {
         $errors = $subscription->errorsDate($subscription->startdate);
 
         if (count($errors) > 0) {
-            Redirect::to('/customers/' . $subscription->customer . '/modifyerror', array('errors' => $errors, 'cu' => $subs));
+            Redirect::to('/customers/' . $subscription->customer . '/newsubs', array('errors' => $errors));
         } else {
             $subscription->save();
             Redirect::to('/customers/' . $subscription->customer, array('message' => 'Subscription is created successfully!'));

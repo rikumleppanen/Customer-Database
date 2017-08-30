@@ -29,7 +29,7 @@ class BaseModel {
 
     public function validate_email() {
         $errors = array();
-        if (($this->email != '' && ! filter_var($this->email, FILTER_VALIDATE_EMAIL)) || $this->email == null) {
+        if (($this->email != '' && !filter_var($this->email, FILTER_VALIDATE_EMAIL)) || $this->email == null) {
             $errors[] = 'Give the email address, please!';
         }
         return $errors;
@@ -61,6 +61,9 @@ class BaseModel {
         if (($this->number != '' and ! preg_match("/^[\s\d]+$/", $this->number) || $this->number == null)) {
             $errors[] = 'No white space, extra characters or country codes are needed in phone number!';
         }
+        if (strlen($this->number) > 40) {
+            $errors[] = 'The maximum limit of the number is exceeded.';
+        }
         return $errors;
     }
 
@@ -74,6 +77,9 @@ class BaseModel {
         }
         if (strlen($this->name) < 5) {
             $errors[] = 'Name requires at least 5 characters';
+        }
+        if (strlen($this->name) > 40) {
+            $errors[] = 'The maximum limit of the name is exceeded.';
         }
         return $errors;
     }

@@ -6,7 +6,7 @@ class Subscription extends BaseModel {
 
     public function __construct($attributes = null) {
         parent::__construct($attributes);
-             $this->validators = array('validate_subscription');
+        $this->validators = array('validate_subscription');
     }
 
     public static function find($id) {
@@ -72,6 +72,20 @@ class Subscription extends BaseModel {
         $format_error = $this->{$validateFormat}($datetime);
         $errors = array_merge($format_error, $date_error);
         return $errors;
+    }
+
+    public function status() {
+        $time = date('c');
+        $date = explode("T", $time)[0];
+        if ( $this->startdate <= $date && is_null($this->enddate)) {
+            return 1;
+        } else if ($this->startdate <= $date && !is_null($this->enddate)) {
+            return 2;
+        } else if ($this->startdate > $date) {
+            return 0;
+        } else {
+            return 3;
+        }
     }
 
 }

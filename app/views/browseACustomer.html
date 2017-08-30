@@ -104,20 +104,39 @@
                             <th>Product</th>
                             <th>Startdate</th>
                             <th>Enddate</th>
+                            <th>status</th>
                             <th></th>
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody>               
                         {% for sub in subs %}
-                        {% for product in products %}
-                        {% if sub.product == product.id %}
-
+                        {% for product in products %}                   
+                        {% if sub.product == product.id and sub.status == 0 %}
+                        <tr class="info">
+                            <td><a href="{{base_path}}/customers/{{customer.id}}/subs/{{sub.id}}">{{product.name}}</a></td>
+                            <td>{{sub.startdate}}</td>
+                            <td>{{sub.enddate}}</td>
+                            <td>{{sub.status}}</td>
+                            <th><a class="btn btn-info btn-sm" href="{{base_path}}/customers/{{customer.id}}/subs/{{sub.id}}">Modify</a></th> 
+                        </tr>
+                        {% endif %}
+                        {% if sub.product == product.id and sub.status == 1 %}
                         <tr class="success">
                             <td><a href="{{base_path}}/customers/{{customer.id}}/subs/{{sub.id}}">{{product.name}}</a></td>
                             <td>{{sub.startdate}}</td>
                             <td>{{sub.enddate}}</td>
+                            <td>{{sub.status}}</td>
                             <th><a class="btn btn-danger btn-sm" href="{{base_path}}/customers/{{customer.id}}/subs/{{sub.id}}">Cancel</a></th> 
+                        </tr>
+                        {% endif %}
+                        {% if sub.product == product.id and sub.status == 2 %}
+                        <tr class="danger">
+                            <td><a href="{{base_path}}/customers/{{customer.id}}/subs/{{sub.id}}">{{product.name}}</a></td>
+                            <td>{{sub.startdate}}</td>
+                            <td>{{sub.enddate}}</td>
+                            <td>{{sub.status}}</td>
+                            <th><a class="btn btn-default btn-sm" href="{{base_path}}/customers/{{customer.id}}/subs/{{sub.id}}">View</a></th> 
                         </tr>
                         {% endif %}
                         {% endfor %}
