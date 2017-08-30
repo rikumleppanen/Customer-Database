@@ -52,6 +52,6 @@ CREATE TABLE Subscription(
     enddate VARCHAR(40),
     created VARCHAR(40),
     cancelled VARCHAR(40),
-    customer INTEGER REFERENCES Customer(id),
-    product INTEGER REFERENCES Product(id)
+    customer INTEGER REFERENCES Customer(id) ON DELETE CASCADE,
+    product INTEGER REFERENCES Product(id) ON DELETE CASCADE
 );

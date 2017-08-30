@@ -29,11 +29,27 @@ INSERT INTO Querycustomer(query, customer) SELECT DISTINCT 3, id as customer FRO
 INSERT INTO Querycustomer(query, customer) SELECT DISTINCT 4, id as customer FROM Customer WHERE address_consent = true;
 INSERT INTO Querycustomer(query, customer) SELECT DISTINCT 5, id as customer FROM Customer WHERE sms_consent = true;
 
-INSERT INTO Product(name) VALUES ('A');
-INSERT INTO Product(name) VALUES ('B');
-INSERT INTO Product(name) VALUES ('AB');
-INSERT INTO Product(name) VALUES ('ABC');
+INSERT INTO Product(name) VALUES ('Product A');
+INSERT INTO Product(name) VALUES ('Product B');
+INSERT INTO Product(name) VALUES ('Bundle AB');
+INSERT INTO Product(name) VALUES ('Bundle ABC');
 
 INSERT INTO Subscription(startdate, created,  customer, product) VALUES (to_char((NOW()-interval'1 day'),'YYYY-MM-DD'), to_char((NOW()-interval'10 day'),'YYYY-MM-DD'), (SELECT id FROM Customer WHERE name = 'Osakeyhtiö AB'),(SELECT id FROM Product WHERE name = 'A'));
-
+INSERT INTO Subscription(startdate, created,  customer, product) VALUES (to_char((NOW()-interval'10 day'),'YYYY-MM-DD'), to_char((NOW()-interval'20 day'),'YYYY-MM-DD'), 3,3);
+INSERT INTO Subscription(startdate, created,  customer, product) VALUES (to_char((NOW()-interval'1 day'),'YYYY-MM-DD'), to_char((NOW()-interval'10 day'),'YYYY-MM-DD'), 4, 2);
+INSERT INTO Subscription(startdate, created,  customer, product) VALUES (to_char((NOW()-interval'1 day'),'YYYY-MM-DD'), to_char((NOW()-interval'10 day'),'YYYY-MM-DD'), 5,1);
+INSERT INTO Subscription(startdate, enddate, created,  cancelled, customer, product) VALUES ('2016-12-12','2017-06-12','2016-12-10','2017-05-05', 5,2);
+INSERT INTO Subscription(startdate, created,  customer, product) VALUES ('2018-01-01','2017-08-30', 5, 3);
+INSERT INTO Subscription(startdate, created,  customer, product) VALUES (to_char((NOW()-interval'10 day'),'YYYY-MM-DD'), to_char((NOW()-interval'20 day'),'YYYY-MM-DD'), 6,2);
+INSERT INTO Subscription(startdate, enddate, created,  cancelled, customer, product) VALUES ('2017-01-12','2017-08-16','2016-12-10','2017-06-05', 6,1);
+INSERT INTO Subscription(startdate, created,  customer, product) VALUES ('2018-01-01','2017-08-30', 7, 4);
+INSERT INTO Subscription(startdate, created,  customer, product) VALUES ('2018-01-01','2017-08-30', 8, 4);
+INSERT INTO Subscription(startdate, created,  customer, product) VALUES ('2018-01-01','2017-08-30', 9, 4);
+INSERT INTO Subscription(startdate, created,  customer, product) VALUES ('2018-01-01','2017-08-30', 10, 4);
+INSERT INTO Subscription(startdate, created,  customer, product) VALUES ('2018-01-01','2017-08-30', 11, 4);
+INSERT INTO Subscription(startdate, enddate, created,  cancelled, customer, product) VALUES ('2015-01-12','2017-03-16','2015-01-12','2017-03-05', 7,1);
+INSERT INTO Subscription(startdate, enddate, created,  cancelled, customer, product) VALUES ('2013-02-05','2017-01-16','2013-02-05','2017-01-05', 8,1);
+INSERT INTO Subscription(startdate, enddate, created,  cancelled, customer, product) VALUES ('2012-03-13','2017-08-16','2012-02-26','2017-06-05', 9,1);
+INSERT INTO Subscription(startdate, enddate, created,  cancelled, customer, product) VALUES ('2011-04-25','2017-07-07','2011-04-25','2017-06-05', 10,1);
+INSERT INTO Subscription(startdate, enddate, created,  cancelled, customer, product) VALUES ('2010-07-12','2017-08-20','2010-07-10','2017-08-20', 2,1);
 

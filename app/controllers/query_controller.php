@@ -4,7 +4,8 @@ class QueryController extends BaseController {
 
     public static function index() {
         $mqueries = Query::all();
-        View::make('browseQueries.html', array('mqueries' => $mqueries));
+        $sums = Query::count($mqueries->id);
+        View::make('browseQueries.html', array('mqueries' => $mqueries, 'sums' => $sums));
     }
 
     public static function find($id) {

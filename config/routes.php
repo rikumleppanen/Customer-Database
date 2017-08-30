@@ -24,9 +24,6 @@ $routes->post('/logout', function() {
     MarketinguruController::logout();
 });
 
-$routes->get('/qsum', 'check_logged_in', function() {
-    HelloWorldController::guru_qsum();
-});
 
 $routes->get('/customers', 'check_logged_in', function() {
     CustomerController::index();
