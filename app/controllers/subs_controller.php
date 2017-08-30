@@ -31,7 +31,6 @@ class SubsController extends BaseController {
 
         $subscription = new Subscription($subs);
         $errors = $subscription->errorsDate($subscription->startdate);
-        Kint::dump($errors);
 
         if (count($errors) > 0) {
             Redirect::to('/customers/' . $subscription->customer . '/modifyerror', array('errors' => $errors, 'cu' => $subs));

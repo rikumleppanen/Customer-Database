@@ -29,7 +29,7 @@ class BaseModel {
 
     public function validate_email() {
         $errors = array();
-        if ($this->email != '' and ! filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+        if (($this->email != '' && ! filter_var($this->email, FILTER_VALIDATE_EMAIL)) || $this->email == null) {
             $errors[] = 'Give the email address, please!';
         }
         return $errors;
@@ -40,13 +40,16 @@ class BaseModel {
         if (strlen($this->password) < 4) {
             $errors[] = 'Give at least four (4) characters for the password, please!';
         }
+        if (strlen($this->password) > 18) {
+            $errors[] = 'There can be at most (18) characters in the password.';
+        }
         return $errors;
     }
 
     public function validate_EmailUniqueness() {
         $errors = array();
         $unique = Marketinguru::isUnique($this->email);
-        Kint::dump($unique);
+
         if ($unique[0] > 0) {
             $errors[] = 'There cannot be several registered users with the same email address';
         }
@@ -55,7 +58,7 @@ class BaseModel {
 
     public function validate_number() {
         $errors = array();
-        if ($this->number != '' and ! preg_match("/^[\s\d]+$/", $this->number)) {
+        if (($this->number != '' and ! preg_match("/^[\s\d]+$/", $this->number) || $this->number == null)) {
             $errors[] = 'No white space, extra characters or country codes are needed in phone number!';
         }
         return $errors;

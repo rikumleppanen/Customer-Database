@@ -96,5 +96,6 @@ class Marketinguru extends BaseModel {
         $row = $query->fetch();
         return $row;
     }
+    
 
 }
