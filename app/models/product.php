@@ -24,4 +24,21 @@ class Product extends BaseModel {
         return $messages;
     }
 
+    public static function find($subsid) {
+        $query = DB::connection()->prepare('SELECT * FROM Product WHERE id IN(SELECT product FROM Subscription WHERE id=:subsid)');
+        $query->execute(array('subsid' => $subsid));
+        $row = $query->fetch();
+
+        if ($row) {
+            $product = new Product(array(
+                'id' => $row['id'],
+                'name' => $row['name']
+            ));
+
+            return $product;
+        }
+
+        return null;
+    }
+
 }

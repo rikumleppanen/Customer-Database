@@ -9,16 +9,10 @@ class SubsController extends BaseController {
     }
 
     public static function cancellation($customerid, $subsid) {
-        $products = Product::all();
+        $product = Product::find($subsid);
         $customer = Customer::find($customerid);
-        View::make('cancelASubs.html', array('products' => $products, 'customer' => $customer, 'subsid' => $subsid));
+        View::make('cancelASubs.html', array('product' => $product, 'customer' => $customer, 'subsid' => $subsid));
     }
-
-//    public static function modifyerror($customerid) {
-//        $products = Product::all();
-//        $customer = Customer::find($customerid);
-//        View::make('modifyerrorSubs.html', array('products' => $products, 'customer' => $customer));
-//    }
 
     public static function store() {
         $params = $_POST;
