@@ -42,7 +42,7 @@ $routes->get('/customers/new', 'check_logged_in', function() {
 });
 
 $routes->post('/customers/delete/:id', 'check_logged_in', function($id) {
-    CustomerController::delete($id);
+    CustomerController::delete($id);   
 });
 
 $routes->get('/customers/:id', 'check_logged_in', function($id) {

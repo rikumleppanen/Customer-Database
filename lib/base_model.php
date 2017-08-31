@@ -54,12 +54,12 @@ class BaseModel {
 
     public function validate_length($field) {
         $errors = array();
-        if (!is_null($field)) {
+        if (!is_null($field) || $field != '') {
             if (strlen($field) < 5) {
-                $errors[] = 'Give at least five (5) characters for the field, please!';
+                $errors[] = 'Give at least five (5) characters for the address field, please!';
             }
             if (strlen($field) > 25) {
-                $errors[] = 'There can be at most (25) characters in the text field.';
+                $errors[] = 'There can be at most (25) characters in the address field.';
             }
         }
         return $errors;

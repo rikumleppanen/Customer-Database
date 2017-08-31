@@ -65,6 +65,11 @@ class Subscription extends BaseModel {
         $this->customer = $row['customer'];
     }
 
+//    public function destroyByCustomer($customerid) {
+//        $query = DB::connection()->prepare('DELETE FROM Subscription WHERE customer=:id');
+//        $query->execute(array('id' => $customerid));
+//    }
+
     public function errorsDate($datetime) {
         $validateDate = 'validate_date';
         $date_error = $this->{$validateDate}($datetime);
@@ -77,7 +82,7 @@ class Subscription extends BaseModel {
     public function status() {
         $time = date('c');
         $date = explode("T", $time)[0];
-        if ( $this->startdate <= $date && is_null($this->enddate)) {
+        if ($this->startdate <= $date && is_null($this->enddate)) {
             return 1;
         } else if ($this->startdate <= $date && !is_null($this->enddate)) {
             return 2;

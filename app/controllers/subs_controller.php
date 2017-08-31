@@ -55,4 +55,10 @@ class SubsController extends BaseController {
         }
     }
 
+//    public static function delete($customerid) {
+//        $attributes = array('customer' => $customerid);
+//        $subs = new Subscription($attributes);
+//        $subs->destroyByCustomer($customerid);
+//    }
+
 }

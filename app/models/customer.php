@@ -87,12 +87,13 @@ class Customer extends BaseModel {
         $query = DB::connection()->prepare('DELETE FROM Customer WHERE id=:id');
         $query->execute(array('id' => $this->id));
     }
-    
+
     public function validate_address() {
-        $validateAddress = 'validate_length';
-        $errors = $this->{$validateAddress}($this->address);
+        if (!is_null($this->address) || $this->address != "") {
+            $validateAddress = 'validate_length';
+            $errors = $this->{$validateAddress}($this->address);
+        } 
         return $errors;
     }
-
 
 }
