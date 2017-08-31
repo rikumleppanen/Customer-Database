@@ -25,7 +25,12 @@ class MarketinguruController extends BaseController {
     public static function find($id) {
         $user = Marketinguru::find($id);
         //Kint::dump($user);
-        View::make('Marketinguru/modifyUser.html', array('user' => $user));
+        View::make('Marketinguru/browseAUser.html', array('user' => $user));
+    }
+    
+    public static function modify($id) {
+        $user = Marketinguru::find($id);
+        View::make('Marketinguru/modifyUser.html', array('user' => $user));        
     }
 
     public static function logout() {
@@ -76,7 +81,7 @@ class MarketinguruController extends BaseController {
         $errors = $user->errors();
 
         if (count($errors) > 0) {
-            Redirect::to('/users/' . $user->id, array('errors' => $errors, 'mguru' => $mguru));
+            Redirect::to('/users/modify/' . $user->id, array('errors' => $errors, 'mguru' => $mguru));
         } else {
             $user->update();
             Redirect::to('/users/' . $user->id, array('message' => 'Updated successfully!'));

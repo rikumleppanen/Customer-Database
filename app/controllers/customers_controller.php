@@ -14,7 +14,7 @@ class CustomerController extends BaseController {
         $products = Product::all();
         View::make('Customer/browseACustomer.html', array('customer' => $customer, 'queries' => $queries, 'subs' => $subs, 'products' => $products));
     }
-
+    
     public static function modify($id) {
         $customer = Customer::find($id);
         View::make('Customer/modifyCustomer.html', array('customer' => $customer));

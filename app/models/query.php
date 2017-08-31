@@ -6,7 +6,7 @@ class Query extends BaseModel {
 
     public function __construct($attributes = null) {
         parent::__construct($attributes);
-        $this->validators = array('validate_name','validate_AtLeastOne');
+        $this->validators = array('validate_name', 'validate_AtLeastOne');
     }
 
     public static function all() {
@@ -105,6 +105,7 @@ class Query extends BaseModel {
     }
 
     public function validate_atLeastOne() {
+        $errors = array();
         if (is_null($this->email_consent) && is_null($this->address_consent) && is_null($this->number_consent) && is_null($this->sms_consent) && is_null($this->thirdparty_consent)) {
             $errors[] = "Select at least one consent before creating a query";
         }

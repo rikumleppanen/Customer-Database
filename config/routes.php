@@ -77,8 +77,12 @@ $routes->get('/users/:id', 'check_logged_in', 'check_admin_rights', function($id
     MarketinguruController::find($id);
 });
 
-$routes->post('/users/:id', 'check_logged_in', 'check_admin_rights', function($id) {
+$routes->post('/users/modify/:id', 'check_logged_in', 'check_admin_rights', function($id) {
     MarketinguruController::update($id);
+});
+
+$routes->get('/users/modify/:id', 'check_logged_in', 'check_admin_rights', function($id) {
+    MarketinguruController::modify($id);
 });
 
 $routes->post('/users/delete/:id', 'check_logged_in', 'check_admin_rights', function($id) {
