@@ -9,10 +9,4 @@
     margin: 0px auto;
 }
 
-.customer-navibar li { display: inline-block; float:left; width: 33%}
-.subs-navibar li { display: inline-block; margin-top: -15px; float:left; width: 33%}
 .license {text-align:center}
-
-#subs-status0 {background-color: #d6eaf8}
-#subs-status1 {background-color: #abebc6}
-#subs-status2 {background-color: #fadbd8}

@@ -6,7 +6,7 @@ class Customer extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_name', 'validate_email', 'validate_number');
+        $this->validators = array('validate_name', 'validate_email', 'validate_number', 'validate_address');
     }
 
     public static function say_hi() {
@@ -86,6 +86,12 @@ class Customer extends BaseModel {
     public function destroy() {
         $query = DB::connection()->prepare('DELETE FROM Customer WHERE id=:id');
         $query->execute(array('id' => $this->id));
+    }
+    
+    public function validate_address() {
+        $validateAddress = 'validate_length';
+        $errors = $this->{$validateAddress}($this->address);
+        return $errors;
     }
 
 

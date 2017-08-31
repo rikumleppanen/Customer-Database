@@ -32,6 +32,12 @@ class BaseModel {
         if (($this->email != '' && !filter_var($this->email, FILTER_VALIDATE_EMAIL)) || $this->email == null) {
             $errors[] = 'Give the email address, please!';
         }
+        if (strlen($this->password) < 6) {
+            $errors[] = 'Give at least four (6) characters for the email address, please!';
+        }
+        if (strlen($this->email) > 50) {
+            $errors[] = 'There can be at most (50) characters in the email address.';
+        }
         return $errors;
     }
 
@@ -42,6 +48,19 @@ class BaseModel {
         }
         if (strlen($this->password) > 18) {
             $errors[] = 'There can be at most (18) characters in the password.';
+        }
+        return $errors;
+    }
+
+    public function validate_length($field) {
+        $errors = array();
+        if (!is_null($field)) {
+            if (strlen($field) < 5) {
+                $errors[] = 'Give at least four (5) characters for the field, please!';
+            }
+            if (strlen($field) > 25) {
+                $errors[] = 'There can be at most (25) characters in the text field.';
+            }
         }
         return $errors;
     }

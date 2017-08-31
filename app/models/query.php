@@ -6,7 +6,7 @@ class Query extends BaseModel {
 
     public function __construct($attributes = null) {
         parent::__construct($attributes);
-        $this->validators = array('validate_queryname');
+        $this->validators = array('validate_name');
     }
 
     public static function all() {
@@ -102,34 +102,6 @@ class Query extends BaseModel {
             ));
         }
         return $messages;
-    }
-
-    public function validate_queryname() {
-        $errors = array();
-        if ($this->name == '' || $this->name == null) {
-            $errors[] = 'You must give a name!';
-        }
-        if (strlen($this->name) < 5) {
-            $errors[] = 'Name requires at least 5 characters';
-        }
-        return $errors;
-    }
-
-    public function validate_CampaignNameUniqueness() {
-        $errors = array();
-        $unique = isUnique($this->email);
-        Kint::dump($unique);
-        if ($unique[0] > 0) {
-            $errors[] = 'There cannot be more than one campaign with same name';
-        }
-        return $errors;
-    }
-
-    public function isUnique($name) {
-        $query = DB::connection()->prepare('SELECT COUNT(*) FROM Query WHERE name=:name');
-        $query->execute(array('name' => $name));
-        $row = $query->fetch();
-        return $row;
     }
 
 }
