@@ -7,14 +7,6 @@ class CustomerController extends BaseController {
         View::make('browseCustomers.html', array('customers' => $customers));
     }
 
-    public static function index2() {
-        $customers = Customer::all();
-        $cusubs = CustomerSubscription::all();
-        $products = Product::all();
-        Kint::dump($customers);
-        View::make('browseCustomersList.html', array('customers' => $customers, 'cusubs' => $cusubs, 'products' => $products));
-    }
-
     public static function find($id) {
         $customer = Customer::find($id);
         $queries = Query::findQueriesByCustomer($id);
@@ -27,11 +19,6 @@ class CustomerController extends BaseController {
         $customer = Customer::find($id);
         View::make('modifyCustomer.html', array('customer' => $customer));
     }
-
-//    public static function modifyError($id) {
-//        $customer = Customer::find($id);
-//        View::make('modifyerrorCustomer.html', array('customer' => $customer));
-//    }
 
     public static function create() {
         View::make('newCustomer.html');

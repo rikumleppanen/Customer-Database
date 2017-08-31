@@ -32,8 +32,8 @@ class BaseModel {
         if (($this->email != '' && !filter_var($this->email, FILTER_VALIDATE_EMAIL)) || $this->email == null) {
             $errors[] = 'Give the email address, please!';
         }
-        if (strlen($this->password) < 6) {
-            $errors[] = 'Give at least four (6) characters for the email address, please!';
+        if (strlen($this->email) < 6) {
+            $errors[] = 'Give at least six (6) characters for the email address, please!';
         }
         if (strlen($this->email) > 50) {
             $errors[] = 'There can be at most (50) characters in the email address.';
@@ -56,7 +56,7 @@ class BaseModel {
         $errors = array();
         if (!is_null($field)) {
             if (strlen($field) < 5) {
-                $errors[] = 'Give at least four (5) characters for the field, please!';
+                $errors[] = 'Give at least five (5) characters for the field, please!';
             }
             if (strlen($field) > 25) {
                 $errors[] = 'There can be at most (25) characters in the text field.';
@@ -65,15 +65,8 @@ class BaseModel {
         return $errors;
     }
 
-    public function validate_EmailUniqueness() {
-        $errors = array();
-        $unique = Marketinguru::isUnique($this->email);
 
-        if ($unique[0] > 0) {
-            $errors[] = 'There cannot be several registered users with the same email address';
-        }
-        return $errors;
-    }
+
 
     public function validate_number() {
         $errors = array();

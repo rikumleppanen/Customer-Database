@@ -76,7 +76,7 @@ class MarketinguruController extends BaseController {
         $errors = $user->errors();
 
         if (count($errors) > 0) {
-            Redirect::to('/users/:id' . $user->id, array('errors' => $errors, 'mguru' => $mguru));
+            Redirect::to('/users/' . $user->id, array('errors' => $errors, 'mguru' => $mguru));
         } else {
             $user->update();
             Redirect::to('/users/' . $user->id, array('message' => 'Updated successfully!'));
