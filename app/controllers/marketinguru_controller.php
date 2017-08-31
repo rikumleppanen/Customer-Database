@@ -19,13 +19,13 @@ class MarketinguruController extends BaseController {
 
     public static function index() {
         $users = Marketinguru::all();
-        View::make('browseUsers.html', array('users' => $users));
+        View::make('Marketinguru/browseUsers.html', array('users' => $users));
     }
 
     public static function find($id) {
         $user = Marketinguru::find($id);
         //Kint::dump($user);
-        View::make('modifyUser.html', array('user' => $user));
+        View::make('Marketinguru/modifyUser.html', array('user' => $user));
     }
 
     public static function logout() {
@@ -34,7 +34,7 @@ class MarketinguruController extends BaseController {
     }
 
     public static function create() {
-        View::make('newUser.html');
+        View::make('Marketinguru/newUser.html');
     }
 
     public static function store() {

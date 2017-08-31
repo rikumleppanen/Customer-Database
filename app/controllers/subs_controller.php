@@ -5,13 +5,13 @@ class SubsController extends BaseController {
     public static function initialize($customerid) {
         $products = Product::all();
         $customer = Customer::find($customerid);
-        View::make('newSubs.html', array('products' => $products, 'customer' => $customer));
+        View::make('Subscription/newSubs.html', array('products' => $products, 'customer' => $customer));
     }
 
     public static function cancellation($customerid, $subsid) {
         $product = Product::find($subsid);
         $customer = Customer::find($customerid);
-        View::make('cancelASubs.html', array('product' => $product, 'customer' => $customer, 'subsid' => $subsid));
+        View::make('Subscription/cancelASubs.html', array('product' => $product, 'customer' => $customer, 'subsid' => $subsid));
     }
 
     public static function store() {

@@ -4,7 +4,7 @@ class CustomerController extends BaseController {
 
     public static function index() {
         $customers = Customer::all();
-        View::make('browseCustomers.html', array('customers' => $customers));
+        View::make('Customer/browseCustomers.html', array('customers' => $customers));
     }
 
     public static function find($id) {
@@ -12,16 +12,16 @@ class CustomerController extends BaseController {
         $queries = Query::findQueriesByCustomer($id);
         $subs = Subscription::findByCustomer($id);
         $products = Product::all();
-        View::make('browseACustomer.html', array('customer' => $customer, 'queries' => $queries, 'subs' => $subs, 'products' => $products));
+        View::make('Customer/browseACustomer.html', array('customer' => $customer, 'queries' => $queries, 'subs' => $subs, 'products' => $products));
     }
 
     public static function modify($id) {
         $customer = Customer::find($id);
-        View::make('modifyCustomer.html', array('customer' => $customer));
+        View::make('Customer/modifyCustomer.html', array('customer' => $customer));
     }
 
     public static function create() {
-        View::make('newCustomer.html');
+        View::make('Customer/newCustomer.html');
     }
 
     public static function store() {

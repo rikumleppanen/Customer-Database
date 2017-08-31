@@ -4,17 +4,17 @@ class QueryController extends BaseController {
 
     public static function index() {
         $mqueries = Query::all();
-        View::make('browseQueries.html', array('mqueries' => $mqueries));
+        View::make('Query/browseQueries.html', array('mqueries' => $mqueries));
     }
 
     public static function find($id) {
         $mquery = Query::find($id);
         $customers = Query::display($id);
-        View::make('browseAQuery.html', array('mquery' => $mquery, 'customers' => $customers));
+        View::make('Query/browseAQuery.html', array('mquery' => $mquery, 'customers' => $customers));
     }
 
     public static function create() {
-        View::make('makeAQuery.html');
+        View::make('Query/makeAQuery.html');
     }
 
     public static function store() {
